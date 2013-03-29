@@ -1,0 +1,118 @@
+@charset "utf-8";
+.clear { //清除浮动
+	clear: both;
+}
+:foucus {
+	outline: none;
+}
+*{
+	margin:0; 
+	padding:0;
+}
+a {
+	color: #0060BF;
+	text-decoration: none;
+	cursor: pointer;
+}
+html{
+	background-color: #FBFBFB;
+}
+body {
+	font-family: sans-serif;
+	font-size: 12px;
+	line-height: 1.4em;
+	min-width: 600px;
+}
+#login {
+	width: 320px;
+	padding: 114px 0 0;
+	margin: auto;
+}
+#logo  a {
+	background: url(../images/logo-login.png) no-repeat top center;
+	width: 326px;
+	height: 67px;
+	text-indent: -9999px;
+	overflow: hidden;
+	padding-bottom: 15px;
+	display: block;
+}
+#login form {
+	margin-left: 8px;
+	padding: 26px 24px 46px;
+	font-weight: normal;
+	background: white;
+	border: 1px solid #E5E5E5;
+	box-shadow: rgba(200,200,200,0.7) 0 4px 10px -1px;
+	-moz-box-shadow: rgba(200,200,200,0.7) 0 4px 10px -1px;
+	-webkit-box-shadow: rgba(200,200,200,0.7) 0 4px 10px -1px;
+	-ms-box-shadow: rgba(200,200,200,0.7) 0 4px 10px -1px;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-ms-border-radius: 3px;
+}
+#login label {
+	color: #777;
+	font-size: 14px;
+	cursor: pointer;
+}
+#login .input {
+	font: 24px/1em "Helvetica Neue Light","Helvetica Neue",sans-serif;
+	color: #555;
+	width: 100%;
+	padding: 5px 10px;
+	margin: 2px 6px 16px 0;
+	border: 1px solid #E5E5E5;
+	background-color: #FBFBFB;
+	outline: none;
+	box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
+	-moz-box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
+	-webkit-box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
+	-ms-box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-ms-border-radius: 3px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+}
+#submit,#reset {
+	font-size: 13px!important;
+	line-height: 16px;
+	padding: 3px 10px;
+	color: #EAF2FA;
+	font-weight: bold;
+	background-color: #464646;
+	border: 1px solid #464646;
+	border-radius: 11px;
+	-webkit-border-radius: 11px;
+	-moz-border-radius: 11px;
+	-ms-border-radius: 11px;
+	text-shadow: rgba(0, 0, 0, 0.3) 0 -1px 0;
+	cursor: pointer;
+	outline: none;
+	width: 50px;
+}
+#submit {
+	float: right;
+	margin-right: 15px;
+}
+#reset {
+	float: left;
+	margin-left: 15px;
+}
+#login-error {
+	background-color: #FFEBE8;
+	border: 1px solid #C00;
+	margin: 0 0 16px 8px;
+	padding: 12px;
+	color: #333;
+	font-size: 13px!important;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-ms-border-radius: 3px;
+}

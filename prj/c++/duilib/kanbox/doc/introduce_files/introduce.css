@@ -1,0 +1,37 @@
+@charset "utf-8";
+/* CSS Document */
+
+.main{ width:1000px; height:auto; margin:10px auto; margin-top:20px; padding-bottom:60px;}
+.main_left{ width:270px; height:auto; float:left; position:relative;}
+.main_left_top{ width:123px; height:142px; display:block; float:left; background:url(../images/kanbox.png) no-repeat; _background:none;    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/kanbox.png',sizingMethod='crop'); margin-left:54px; margin-top:40px; display:inline;}
+.menu ul{ width:217px; height:auto; float:left; list-style:none; margin-left:29px; display:inline; margin-bottom:2px;}
+.menu{
+	width:217px;
+	height:auto;
+	list-style:none;
+	margin-left:29px;
+	display:inline;
+	margin-bottom:2px;
+	position:absolute;
+	z-index:1000;
+	margin-left:0px;
+}
+.menu ul span{ cursor:pointer;width:187px; height:32px; line-height:32px; text-align:left; color:#666; font-weight:bold; float:left; background:url(../images/introduce.gif) no-repeat 0px 0px; padding-left:30px;}
+.menu ul span:hover{ background:url(../images/introduce.gif) no-repeat 0px -32px;}
+.menu ul a{ font-weight:normal;width:187px; height:32px; display:block; float:left; line-height:32px; text-align:left; padding-left:30px; display:none; color:#666;}
+.main_right{ width:678px; height:auto; float:right; border-left:1px dotted #CCC; min-height:600px; _height:600px; overflow: visible; padding-left:20px; margin-right:20px; display:inline;}
+.right_top{ width:678px; border-bottom:2px solid #666666; height:35px; float:left;}
+.right_top span{ width:300px; height:28px; font-family:"微软雅黑"; font-size:18px; line-height:30px; color:#666; float:left; display:block; margin-top:5px;}
+.right_top a{ width:76px; height:23px; display:block; float:right; background:url(../images/bot_green.gif) no-repeat 0px -208px; padding-top:3px; color:#FFF; font-family:"微软雅黑"; font-weight:bold; font-size:14px; padding-left:40px;}
+.right_top a:hover{ text-decoration:none;}
+
+.text, .text02{width:678px; height:auto; float:left; margin-top:30px; color:#666;}
+.text span{font-weight:bold; width:600px; height:30px; line-height:30px; display:block; float:left;}
+.text ol{ padding-left:23px; width:500px; float:left; height:auto; list-style:"1"; line-height:30px;}
+.text p{ width:600px; float:left; line-height:30px;}
+.text span.tspan{margin-top:20px;}
+.trighttop{margin-top:30px;}
+
+.fanhui{ width:86px; height:26px; background:url(../images/bot_green.gif) no-repeat 0px -52px; display:block; line-height:26px; text-align:center; color:#FFF; font-weight:bold; margin-top:50px; float:left;}
+.fanhui:hover{ text-decoration:none;}
+.wendang:hover{ text-decoration:none;}

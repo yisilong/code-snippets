@@ -1,0 +1,74 @@
+//auth
+invalid_request	请求参数不全，或含有错误参数
+invalid_client	客户端提供的验证信息有误
+unauthorized_client	客户端提供的信息无效
+redirect_uri_mismatch	客户端提供的回调地址不一致
+access_denied	授权请求被用户或服务器拒绝
+access_limited	访问权限受到使用限制，或当前权限达到了最大访问次数
+unsupported_response_type	请求的auth授权方式有误
+invalid_grant	授权请求有误，或验证码超时、无效
+unsupported_grant_type	请求的验证方式有误
+invalid_token	请求的access_token无效，同时服务器响应返回401错误
+expired_token	请求的access_token超时，同时服务器响应返回401错误
+
+
+//share
+ERROR_EMPTY_PATH	共享路径为空
+ERROR_EMPTY_USERS	共享用户列表为空
+ERROR_TOO_MANY_USERS	发起共享的用户数过多，不允许超过100
+SHARE_USER_NOT_EXIST	发起共享的用户不存在
+SHARE_USER_EXIST_AND_NOT_ACTIVE	发起共享的用户帐号未激活
+ERROR_CAN_NOT_BE_SHARED	发起共享的文件夹不允许共享（含有已经共享的父、子目录，或目录本上不存在）。
+
+//user
+ERROR_USER_EXIST	用户已存在
+ERROR_USER_NAME_LEN_INVALID	用户名长度无效
+ERROR_USER_NOT_EXIST	用户不存在
+ERROR_USER_NAME_INVALID	用户名含有非法字符
+ERROR_NEW_USER_EXIST	新用户名已存在
+ERROR_WRONG_PASSWD	密码错误
+ERROR_PASSWD_LEN	密码长度错误
+ERROR_PASSWD_NOT_EXIST	密码不存在
+ERROR_SAME_NAME_USER_TOO_MUCH	同名的用户数过多
+ERROR_SESSIONID_TIMEOUT	sessionid超时
+ERROR_SESSIONID_INVALID	sessionId无效
+ERROR_AUTHCODE_TIMEOUT	校验码超时
+ERROR_AUTHCODE_INVALID	校验码无效
+ERROR_AUTHCODE_LEN_INVALID	校验码长度不对
+ERROR_IP_NOT_MATCHED	ip不匹配
+ERROR_PORT_INVALID	端口号无效
+ERROR_OPERATE_NUM_TOO_MUCH	移动复制，或者删除的节点数过多
+ERROR_OPERATE_NUM_ZERO	移动复制，或者删除的节点数为0
+ERROR_SRC_FILE_NUM_TOO_MUCH	源目标数量过多
+ERROR_SRC_DEST_PARENT	目标目录为源目录的子目录
+ERROR_SRC_DEST_SAME	移动时源目标与终目标相同
+ERROR_FILE_DIR_SAME	移动或复制时，同名文件导致的后缀数字过多，例如目前只允许fileA(1)~file(20),过多报错
+ERROR_SRC_DEST_SAME_PARENT	移动时源目录与目标目录在同一目录下
+ERROR_ALL_NAME_TOOLONG	全名过长（加上父目录的长度）
+ERROR_SELF_NAME_TOOLONG	自身名称（未加父级）过长
+ERROR_PATH_NOT_EXIST	名称不存在
+ERROR_PATH_EXIST	名称已经存在
+ERROR_PATH_NOT_ALLOWED	名称不允许，含有特殊字符，特定文件夹名称
+ERROR_TOTAL_PATH_EMPTY	全路径为空
+ERROR_SELF_PATH_EMPTY	自身名称为空
+ERROR_CAPABITY_NOT_ENOUGH	用户容量不够
+ERROR_OVER_MAX_EXTRA_SIZE	后台手动添加时超过最大的配额
+ERROR_UPLOAD_CAPA_NOT_ENOUGH	用户容量不够（只用于上传上传前检查容易是否足够时返回）
+ERROR_SEARCH_KEY_NUM_TOO_MUCH	一次搜索的键数目过多
+ERROR_SEARCH_KEY_EMPTY	搜索关键字为空
+ERROR_SEARCH_FAIL	搜索失败
+ERROR_SEARCH_RETRY	搜索重试
+ERROR_NODEINFO_NOT_FOUND	查询的节点未找到
+ERROR_SHARE_ID_NOT_EXIST	共享Id不存在
+ERROR_SHARE_USER_NUM_TOO_MUCH	共享的用户人数过多
+ERROR_SHARE_ID_INVALID	共享Id无效
+ERROR_SHARE_NOT_SHARE_PATH	该路径不是共享路径
+ERROR_SHARE_PARENT_OR_CHILD_PATH_SHARED	目录已存在共享的父子目录
+ERROR_SHARE_PATH_DELETED	欲创建分享的路径被删除了
+ERROR_SHARE_INVITE_USER_ZERO	邀请的用户列表为空
+ERROR_SHARE_PATH_ERROR	路径为空或根目录
+ERROR_JOIN_GROUP_FAIL	共享失败
+ERROR_SHARE_PATH_FILE	共享路径不是一个目录（文件夹）
+ERROR_SHARE_DEST_SRC_PATH_SHARED	源和目标路径都是共享路径
+ERROR_MAX_SHARED_FOLDER	达到了最大共享文件夹数
+ERROR_MAX_SHARE_GROUP_USER	达到了最大共享用户数

@@ -1,0 +1,140 @@
+</HTML>
+<HEAD>
+<TITLE>使用方法</TITLE>
+</HEAD>
+
+<BODY background="image.jpg">
+<center><font face="宋体" size="+2" color="Teal"><b>使用方法</b></font></center>
+<hr width="100%" align="center">
+
+<img border="0" src="image02.jpg" align="right" vspace="1" hspace="1" usemap="#return">
+<map name="return">
+<area shape="rect" coords="4,4,96,24" href="index.html">
+</map>
+<font face="宋体" size="+1" color="#5052AD">
+<pre>
+
+    以下内容分两部分讲述了位图类CBmpProc的使用方法。第一部分是描述怎样将
+这个类加入到你的软件中，第二部分是描述怎样使用这个类中的函数。先说第一部
+分：
+
+    <b>一：将位图类CBmpProc加入到软件项目中</b>
+
+    这个类一共有两个文件，即BmpProc.h和BmpProc.cpp。把位图类加入到项目
+实际上就是将这两个文件加入到项目中。首先启动VC++，然后用File菜单中的
+Open Workspace...项打开你的软件项目。再用Project菜单中的Add To Project
+项里的Files...将这两个文件加入。此时，你应该在左边Workspace窗口的
+FileView中Header Files和Source Files栏里看到以上两个文件已被加入。
+    然后就是修改StdAfx.h文件。打开StdAfx.h文件，加入下面这一行代码：
+    
+    #include "BmpProc.h"
+    
+    应注意的是BmpProc.h和BmpProc.cpp文件此时必须已经复制到你的项目目录
+中。然后保存StdAfx.h文件。到此，这个位图类就已经加入到你的项目中了。
+
+
+    <b>二：使用类函数</b>
+
+    完成第一步之后，你可以在程序的任何地方使用这个类。使用的步骤是首先
+定义类目标实体，比如：
+
+    CBmpProc	bmp;
+    或者
+    CBmpProc   *pBmp = (CBmpProc*)new(CBmpProc);
+
+    这时的类目标（即上文中的bmp和pBmp）是空的，也就是说类中还没有位图。
+这就需要第二步，读入位图。读入的方法很多，你可以从位图文件中读入位图，
+或是从程序资源或剪贴板中读入，甚至可以从另一个位图的指定矩形中读入。下
+面是读入位图的类函数：
+
+	// 从文件读入
+	BOOL LoadFromFile(LPCTSTR lpszPathName);
+	// 从资源读入（使用资源标识）
+	BOOL LoadFromResourceID(UINT uID, HINSTANCE hInst);
+	// 从资源读入（使用资源名称）
+	BOOL LoadFromResourceName(LPCTSTR lpResourceName, HINSTANCE hInst);
+	// 从另一个位图中读入（位图类）
+	BOOL LoadFromObject(CBmpProc& souBmp, CRect *pSouRect);
+	// 从另一个位图中读入（位图句柄）
+	BOOL LoadFromHbmp(HBITMAP sou, CRect *pSouRect);
+	// 从剪贴板读入
+	BOOL LoadFromClipboard();
+
+    以上这些函数如果执行成功（返回值是TRUE）之后，类中就存在了位图。
+	（是否存在位图可以用类函数IsValid来判断）
+
+
+
+    下面是如何显示类中的位图，本类中提供了七个函数用于显示位图：
+
+	// 显示位图
+	BOOL Draw(CDC& dc, const CRect* rcDst, const CRect* rcSrc);
+	// 平铺位图
+	BOOL DrawTile(CDC& dc, CRect* crArea);
+	// 居中显示位图
+	BOOL DrawCenter(CDC& dc, CRect* crArea);
+	// 透明的显示位图（以矩形参数指定）
+	BOOL DrawTransparentInRect(CDC& dc, COLORREF crColour, CRect* crDest, 
+			CRect* crSou, int mode);
+	// 透明的显示位图（以点坐标指定）
+	BOOL DrawTransparentInPoint(CDC& dc, COLORREF crColour, int x, int y, 
+			CRect* crSou, int mode);
+	// 透明并且居中的显示位图
+	BOOL DrawTranCenter(CDC& dc, CRect* crArea, COLORREF crColour, int mode);
+	// 透明的平铺位图
+	BOOL DrawTranTile(CDC& dc, CRect* crArea, COLORREF crColour, int mode);
+	
+
+    其中第一个函数是最重要的，它可以将类中的位图部分的或全部的显示在
+指定的矩形中，它的调用形式是：
+
+    类目标.Draw(显示用设备描述表引用，显示矩形，待显示的图像尺寸)
+
+    剩下的显示函数可以用于特殊目的，DrawTile函数用于将类中位图以
+平铺方式填满指定矩形，DrawCenter函数则是将类中的位图显示在指定矩形的
+中间，等等。（具体的函数说明请参见总目录中“参考手册”一章）
+
+
+
+    再下来就是如何销毁这个类。如果你是用定义的方法，比如：
+
+    CBmpProc	bmp;
+
+    来使用位图类，那么你不需要显示的销毁它。因为类的析构函数将自动的
+释放类占用的所有资源（包括位图句柄、内存资源）。但是如果你是用new操作
+符分配的类，比如：
+
+    CBmpProc  *pBmp = (CBmpProc*)new(CBmpProc);
+
+    那么在变量名有效范围内必须显示的将其删除，即使用delete操作符，如
+下：
+
+    delete (CBmpProc*)pBmp;
+
+    如果你不这样做，那么类占用的资源不会自动销毁。
+
+
+
+    类还提供了保存位图的函数：
+
+    BOOL Save(LPCTSTR lpszNewFileName, WORD nBitsPerPixel);
+    BOOL SaveToClipboard();
+
+    这两个函数可以将类中的位图保存到指定文件中，或是保存到剪贴板中。
+如果你想保存位图，可以使用这两个函数。
+
+
+
+    类中还有其它的一些函数，你可以查看参考手册，或是看源代码文档，
+这些函数对你深入使用这个类会有很大帮助。（我极力推荐你查看类的源
+代码文档，只有这样你才能理解它的工作原理，使用起来才会得心应手）
+    
+
+<p align="right">YZ 2000.01</p>
+</pre>
+</font>
+<hr width="100%" align="center">
+<font face="Arial" size="+1" color="block"><b><i>End</i></b></font>
+<img border="0" src="image02.jpg" align="right" vspace="1" hspace="1" usemap="#return">
+</BODY>
+</HTML>

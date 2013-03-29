@@ -1,0 +1,647 @@
+<h1 id="kanbox_api_specifications_version_0">Kanbox API Specifications - Version 0</h1>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>The Kanbox API allows you peroform file operation on a Kanbox user&#8217;s account using simple HTTP calls.</p>
+
+<p>In order to use the API you&#8217;ll need to register a new app at our <a href="http://open.kanbox.com">Developer Page</a>. You&#8217;ll receive a Client ID and Secret which you&#8217;ll use for the Authorization and Authentication part to initiate connection from your app. The Client Secret is indeed a secret. Keep it safe. You&#8217;ll only need to communicate it back to us using POST over HTTPS.</p>
+
+<p>Before using the operations you must authenticate yourself and let the user authorize the use of your app with their account. This process follows the <a href="http://tools.ietf.org/html/draft-ietf-oauth-v2-15">OAuth 2.0 Draft 15</a> specifications, using the <em>Authorization Code</em> flow defined in <a href="http://tools.ietf.org/html/draft-ietf-oauth-v2-15#section-4.1">section 4.1</a>. This stage requires your app to direct the user to our servers for login and granting your app permission to access their files. At the end of this process, as described in detail below, you&#8217;ll receive an Access Token which you&#8217;ll use to perform the file operations.</p>
+
+<p>The file operation are performed by calling URLs using GET or POST, as described below. The responses are encoded as JSON, except for download and upload operations where we return HTTP errors if needed.</p>
+
+<h2 id="app_status">App Status</h2>
+
+<p>A newly registered app is automatically assigned a Development Status.
+Before you release your app to the public you must apply for Production Status from the <a href="http://open.kanbox.com/app">Developer Page</a>, supplying some details on how we can check it. We&#8217;ll then review your app, approve (or reject) it and let you know by email.</p>
+
+<h2 id="definitions">Definitions</h2>
+
+<h3 id="entities_defined_in_oauth_20_draft_and_what_they_mean">Entities defined in OAuth 2.0 Draft and what they mean</h3>
+
+<p><strong>Resource Owner</strong> A Kanbox user.</p>
+
+<p><strong>Client</strong> That&#8217;s you, an app that uses our API to access the Resource Owner&#8217;s files.</p>
+
+<p><strong>Authorization Server</strong> The server you&#8217;ll use to fetch Authorization Codes and Access Tokens. Currently at <strong>https://auth.kanbox.com</strong>.</p>
+
+<p><strong>Resource Server</strong> The server you&#8217;ll use to perform actual file operations after you&#8217;ve received the Access Token.  Currently at <strong>https://api.kanbox.com</strong> and <strong>https://api-upload.kanbox.com</strong>.</p>
+
+<h3 id="more_definitions">More definitions</h3>
+
+<p><strong>Web App</strong> Any app that runs on a web server.</p>
+
+<p><strong>Native App</strong> An app that runs on a PC or a mobile devices. You&#8217;ll need to display a web view for the authorization stage.</p>
+
+<h1 id="authorization_and_authentication">Authorization and Authentication</h1>
+
+<h2 id="overview">Overview</h2>
+
+<p>In order to perform API operations you&#8217;ll need to get an <em>Access Token</em>. Once you&#8217;ve got the token you&#8217;ll need to supply it as a parameter for every operation request. The tokens have a life span of 1 hour. Once an Access Token is expired (or before that) you can use a <em>Refresh Token</em>, which we&#8217;ll also supply you with, to ask for a new Access Token.</p>
+
+<h3 id="so_how_do_i_get_it">So how do I get it?</h3>
+
+<ul>
+<li><p>The first stage is getting an <em>Authorization Code</em>. You&#8217;ll need to supply us with your app&#8217;s Client ID and a redirection URI and display a page from our server to your app&#8217;s user. We&#8217;ll ask the user to login and approve the API use by your app (or create a new account if needed). We&#8217;ll then redirect the user back to your app using the supplied redirection URI, passing as a parameter the Authorization Code. (For Native Apps which don&#8217;t run on the web, there&#8217;s a special URI string you may use to capture this redirection).</p></li>
+<li><p>The second stage is getting the <em>Access Token</em> and <em>Refresh Token</em> using the Authorization Code you&#8217;ve just received. You&#8217;ll need to do a POST request to the token endpoint, supplying the Authorization Code, your app&#8217;s Client ID and Client Secret</p></li>
+</ul>
+
+<h3 id="how_do_i_use_the_access_token_once_i_got_it">How do I use the Access Token once I got it?</h3>
+
+<p>When calling an API operation (described in detail later) you need to supply the Access Token in an Authorization header, as defined in [Bearer Tokens draft 4][http://tools.ietf.org/html/draft-ietf-oauth-v2-bearer-04].
+For example, requesting the User Info operation will look like this (assuming your access token is <em>SlAV32hkKG</em>):</p>
+
+<pre><code>GET /0/info HTTP/1.1
+Host: api.kanbox.com
+Authorization : Bearer SlAV32hkKG
+</code></pre>
+
+<h2 id="obtaining_authorization_code">Obtaining Authorization Code</h2>
+
+<h3 id="url">URL</h3>
+
+<p>https://auth.kanbox.com/0/auth</p>
+
+<h3 id="methods">Methods</h3>
+
+<p>GET</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<p><strong>response_type</strong> <em>required</em> Must be set to &#8220;code&#8221;.</p>
+
+<p><strong>client_id</strong> <em>required</em> Client&#8217;s provided Client ID (available on the <a href="http://open.kanbox.com/app">Developer Page</a>).</p>
+
+<p><strong>redirect_uri</strong> <em>required</em> The URI we&#8217;ll redirect the user to once we have an authorization code. For native apps, use this special string: <strong>urn:ietf:wg:oauth:2.0:oob</strong>.</p>
+
+<p><strong>user_language</strong> <em>optional</em> The 2-letter language code (According to <a href="http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a>) of preference. For Example: &#8220;ZH&#8221; for Chinese.</p>
+
+<p><strong>user_platform</strong> <em>optional</em> One of the following strings identifying the calling OS: &#8220;web&#8221;, &#8220;windows&#8221;, &#8220;mac&#8221;, &#8220;linux&#8221;, &#8220;iphone&#8221;, &#8220;ipad&#8221;, &#8220;android&#8221;, &#8220;symbian&#8221;.</p>
+
+<h3 id="sample_url">Sample URL</h3>
+
+<p>Assuming your app is a Web App, your Client ID is <em>524756055226487</em> and Redirect URI is <em>https://client.example.com/cb</em>:</p>
+
+<pre><code>https://auth.kanbox.com/0/auth?
+    response_type=code&amp;
+    client_id=524756055226487&amp;
+    platform=web&amp;
+    redirect_uri=https%3A%2F%2Fclient%2Eexample%2Ecom%2Fcb&amp;
+    user_language=ZH
+</code></pre>
+
+<h3 id="sample_response">Sample Response</h3>
+
+<p>If we successfully authenticated the user, we&#8217;ll redirect the client to this address:</p>
+
+<pre><code>https://client.example.com/cb?code=i1WsRn1uB1
+</code></pre>
+
+<p>If the user declines, we&#8217;ll redirect to:</p>
+
+<pre><code>https://client.example.com/cb?error=access_denied
+</code></pre>
+
+<p>Possible error codes, as defined in the <a href="http://tools.ietf.org/html/draft-ietf-oauth-v2-15#section-4.1.2.1">OAuth 2.0 Draft</a>:
+<code>*invalid_request*, *invalid_request*, *access_denied* and *unsupported_response_type*.</code></p>
+
+<h2 id="obtaining_access_token">Obtaining Access Token</h2>
+
+<h3 id="url">URL</h3>
+
+<pre><code>https://auth.kanbox.com/0/token
+</code></pre>
+
+<h3 id="methods">Methods</h3>
+
+<p>POST</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<p><strong>grant_type</strong> <em>required</em> Must be set to &#8220;authorization_code&#8221;.</p>
+
+<p><strong>client_id</strong> <em>required</em> Client&#8217;s provided Client ID (available on the <a href="http://open.kanbox.com/app">developer page</a>).</p>
+
+<p><strong>client_secret</strong> <em>required</em> Client&#8217;s provided Client Secret (available on the <a href="http://open.kanbox.com/app">developer page</a>).</p>
+
+<p><strong>code</strong> <em>required</em> The Authorization Code you obtained in the previous step (Obtaining Authorization Code).</p>
+
+<p><strong>redirect_uri</strong> <em>required</em>The same URI you supplied in the previous step (Obtaining Authorization Code).</p>
+
+<h3 id="sample_request">Sample Request</h3>
+
+<pre><code>POST /0/token HTTP/1.1
+    Host: auth.kanbox.com
+    Content-Type: application/x-www-form-urlencoded
+
+    grant_type=authorization_code&amp;
+    client_id=s6BhdRkqt3&amp;
+    client_secret=gX1fBat3bV&amp;
+    code=i1WsRn1uB1&amp;
+    redirect_uri=https%3A%2F%2Fclient%2Eexample%2Ecom%2Fcb
+</code></pre>
+
+<h3 id="sample_response">Sample Response</h3>
+
+<pre><code>{
+    "access_token": "SlAV32hkKG",
+    "token_type": "Bearer"
+    "expires_in": 3600,
+    "refresh_token": "5c32995dd5c7b3ff8e1a6b047e9f3af4"
+}
+</code></pre>
+
+<h2 id="refreshing_an_access_token">Refreshing an Access Token</h2>
+
+<p>If you try to access an API operation with an expired access token, you&#8217;ll receive a <em>401 Unauthorized</em> HTTP response.
+At any time, before or after your Access Token is expired, you may request a new one at the same URL as for obtaining the initial Access Token, using your refresh token.</p>
+
+<h3 id="sample_request">Sample Request</h3>
+
+<pre><code>POST /0/token HTTP/1.1
+    Host: auth.kanbox.com
+    Content-Type: application/x-www-form-urlencoded
+
+    grant_type=refresh_token&amp;
+    client_id=s6BhdRkqt3&amp;
+    client_secret=gX1fBat3bV&amp;
+    refresh_token=5c32995dd5c7b3ff8e1a6b047e9f3af4
+</code></pre>
+
+<h1 id="api_operations">API Operations</h1>
+
+<h2 id="account_info">Account Info</h2>
+
+<p>Returns info about the user, such as email address and disk space quota and usage.</p>
+
+<h3 id="url">URL</h3>
+
+<pre><code>https://api.kanbox.com/0/info
+</code></pre>
+
+<h3 id="methods">Methods</h3>
+
+<p>GET</p>
+
+<h3 id="sample_return_value">Sample return value:</h3>
+
+<pre><code>{ "email": "user@gmail.com", "spaceQuota": 16106127360, "spaceUsed": 121092528, "emailIsActive": 1, "phoneIsActive": 0}
+</code></pre>
+
+
+
+<h2 id="files_list">Files List</h2>
+
+<p>Use this operation to get a list of file and sub-folders inside a folder. Do <em>not</em> traverse every sub-folder to get it&#8217;s list until you really need it (i.e. when the user selects the sub-folder).</p>
+
+<p>After a user logs in, issue a request to list the files under the root folder, &#8220;/&#8221;, with no hash. For better performance of your app, save the hash you get as a result and associate it with the folder. The next time you need to list the files of the same folder, provide that has us a parameter. If there were no changes, you&#8217;ll get a &#8220;nochange&#8221; result, otherwise you&#8217;ll get a new list representing the current contents of the folder.</p>
+
+<h3 id="url">URL</h3>
+
+<pre><code>https://api.kanbox.com/0/list&lt;path&gt;
+</code></pre>
+
+<h3 id="methods">Methods</h3>
+
+<p>GET</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<p><strong>path</strong> <em>required</em> A path of a folder. This parameter is part of the request url.</p>
+
+<p><strong>hash</strong> <em>optional</em> The last hash known to the app. A file list will be returned only if the folder changed since this hash was issues. If there are no changes, a <strong>no changes</strong> status will be returned.</p>
+
+<h3 id="sample_url">Sample URL:</h3>
+
+<p>For the path &#8220;/images&#8221; and a previous known hash of <strong>XXE9832DFG1AS</strong>:</p>
+
+<pre><code>https://api.kanbox.com/0/list/images?hash=XXE9832DFG1AS
+</code></pre>
+
+<pre><code>GET /0/list/images?hash=XXE9832DFG1AS HTTP/1.1
+Host: api.kanbox.com
+Authorization : Bearer <access_token>
+</code></pre>
+
+<h3 id="sample_return_values">Sample return values:</h3>
+
+<p>For a successful operation without supplying a hash, or supplying a hash that doesn&#8217;t match the latest hash:</p>
+
+<pre><code>{ "status": "ok",  "hash": "XXE9832DFG1AS", 
+"contents":[
+{
+"fullPath": "/images/Vacation Photos", "modificationDate":"2011-01-01 00:00:08", "fileSize": 0, "isFolder":true,"isShared":true},
+"fullPath": "/images/flower.jpg", "modificationDate":"2011-01-01 00:00:08", "fileSize": 1213498, "isFolder":false,"isShared":false},
+"fullPath": "/images/doggydog.jpg", "modificationDate":"2011-02-08 15:04:08", "fileSize": 204326, "isFolder":false,"isShared":false}]
+] }
+</code></pre>
+
+<p>For a successful operation supplying a hash that matches the latest hash:</p>
+
+<pre><code>{ "status": "nochange" }
+</code></pre>
+
+<h2 id="download">Download</h2>
+
+<h3 id="url">URL</h3>
+
+<pre><code>https://api.kanbox.com/0/download&lt;path&gt;
+</code></pre>
+
+<h3 id="methods">Methods</h3>
+
+<p>GET</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<p><strong>path</strong> <em>required</em> A path of a file. This parameter is part of the request url.</p>
+
+<h3 id="sample_url">Sample URL:</h3>
+
+<pre><code>https://api.kanbox.com/0/download/folder1/file1.jpg
+</code></pre>
+
+<pre><code>GET /0/download/folder1/file1.jpg HTTP/1.1
+Host: api.kanbox.com
+Authorization : Bearer <access_token>
+</code></pre>
+
+<h3 id="sample_return_values">Sample return values:</h3>
+
+<pre><code>Returns the file contents.
+</code></pre>
+
+<h3 id="http_error_codes">HTTP Error Codes</h3>
+
+<p>404 File Not Found
+401 Unauthorized</p>
+
+<h2 id="upload">Upload</h2>
+
+<h3 id="url">URL</h3>
+
+<pre><code>https://api-upload.kanbox.com/0/upload&lt;path&gt;
+
+Notice the server address differs from the normal API operations address.
+</code></pre>
+
+<h3 id="methods">Methods</h3>
+
+<p>POST</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<p><strong>path</strong> <em>required</em> A path of the new file (must not exist already). This parameter is part of the request url.</p>
+
+<p><strong>file</strong> <em>required</em> The contents of the file.</p>
+
+<h3 id="sample_url">Sample URL:</h3>
+
+<pre><code>https://api-upload.kanbox.com/0/upload/test/testfile.exe
+</code></pre>
+
+<pre><code>POST /0/upload/test/testfile.exe HTTP/1.1
+Host: api-upload.kanbox.com
+Authorization : Bearer <access_token>
+</code></pre>
+
+<h3 id="http_error_codes">HTTP Error Codes</h3>
+
+<p>401 Unauthorized
+404 If the parent path does not exist</p>
+
+<h2 id="delete">Delete</h2>
+
+<h3 id="url">URL</h3>
+
+<pre><code>https://api.kanbox.com/0/delete&lt;path&gt;
+</code></pre>
+
+<h3 id="methods">Methods</h3>
+
+<p>GET</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<p><strong>path</strong> <em>required</em> A path of a file or a folder. This parameter is part of the request url.</p>
+
+<h3 id="sample_url">Sample URL:</h3>
+
+<pre><code>https://api.kanbox.com/0/delete/pictures/flower.jpg
+</code></pre>
+
+<pre><code>GET /0/delete/pictures/flower.jpg HTTP/1.1
+Host: api.kanbox.com
+Authorization : Bearer <access_token>
+</code></pre>
+
+<h3 id="sample_return_value">Sample return value:</h3>
+
+<p>For a successful operation:</p>
+
+<p><code>{ "status": "ok" }</code></p>
+
+
+<h2 id="move">Move</h2>
+
+<h3 id="url">URL</h3>
+
+<pre><code>https://api.kanbox.com/0/move&lt;path&gt;
+</code></pre>
+
+<h3 id="methods">Methods</h3>
+
+<p>GET</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<p><strong>path</strong> <em>required</em> A path of a file or a folder. This parameter is part of the request url.</p>
+
+<p><strong>destination_path</strong> <em>required</em> The destination path to move the file or folder.</p>
+
+<h3 id="sample_url">Sample URL:</h3>
+
+<pre><code>https://api.kanbox.com/0/move/pictures/flower.jpg?destination_path=/pictures/flower2.jpg
+</code></pre>
+
+<pre><code>GET /0/move/pictures/flower.jpg?destination_path=/pictures/flower2.jpg HTTP/1.1
+Host: api.kanbox.com
+Authorization : Bearer <access_token>
+</code></pre>
+
+<h3 id="sample_return_value">Sample return value:</h3>
+
+<p>For a successful operation:</p>
+
+<p><code>{ "status": "ok" }</code></p>
+
+<h2 id="copy">Copy</h2>
+
+<h3 id="url">URL</h3>
+
+<pre><code>https://api.kanbox.com/0/copy&lt;path&gt;
+</code></pre>
+
+<h3 id="methods">Methods</h3>
+
+<p>GET</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<p><strong>path</strong> <em>required</em> A path of a file or a folder. This parameter is part of the request url.</p>
+
+<p><strong>destination_path</strong> <em>required</em> The destination path to move the file.</p>
+
+<h3 id="sample_url">Sample URL:</h3>
+
+<pre><code>https://api.kanbox.com/0/copy/pictures/flower.jpg?destination_path=/pictures/flower2.jpg
+</code></pre>
+
+<pre><code>GET /0/copy/pictures/flower.jpg?destination_path=/pictures/flower2.jpg HTTP/1.1
+Host: api.kanbox.com
+Authorization : Bearer <access_token>
+</code></pre>
+
+<h3 id="sample_return_values">Sample return values:</h3>
+
+<p>For a successful operation:</p>
+
+<p><code>{ "status": "ok" }</code></p>
+
+<h2 id="create_a_new_folder">Create a New Folder</h2>
+
+<h3 id="url">URL</h3>
+
+<pre><code>https://api.kanbox.com/0/create_folder&lt;path&gt;
+</code></pre>
+
+<h3 id="methods">Methods</h3>
+
+<p>GET</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<p><strong>path</strong> <em>required</em> A path the new folder to create. This parameter is part of the request url.</p>
+
+<h3 id="sample_url">Sample URL:</h3>
+
+<pre><code>https://api.kanbox.com/0/create_folder/pictures
+</code></pre>
+
+<pre><code>GET /0/create_folder/pictures HTTP/1.1
+Host: api.kanbox.com
+Authorization : Bearer <access_token>
+</code></pre>
+
+<h3 id="sample_return_values">Sample return values:</h3>
+
+<p>For a successful operation:</p>
+
+<p><code>{ "status": "ok" }</code></p>
+
+<h2 id="thumbnail">Thumbnail</h2>
+
+<p>Returns a JPEG thumbnail of an image, in one of 3 sizes.</p>
+
+<h3 id="url">URL</h3>
+
+<pre><code>https://api.kanbox.com/0/thumbnail&lt;path&gt;
+</code></pre>
+
+<h3 id="methods">Methods</h3>
+
+<p>GET</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<p><strong>path</strong> <em>required</em> A path of an image file. This parameter is part of the request url.
+<strong>size</strong> <em>optional</em> The required size, out of these options:
+- &#8220;small&#8221;: returns an image with size 50x50px.
+- &#8220;medium&#8221;: returns an image with size 200x200px (this is the default if no size parameter is specified).
+- &#8220;large&#8221;: returns an image with size 1024x768px.</p>
+
+<h3 id="sample_url">Sample URL:</h3>
+
+<pre><code>https://api.kanbox.com/0/thumbnail/folder1/file1.jpg?size=small
+</code></pre>
+
+<pre><code>GET /0/thumbnail/folder1/file1.jpg?size=small HTTP/1.1
+Host: api.kanbox.com
+Authorization : Bearer <access_token>
+</code></pre>
+
+<h3 id="sample_return_values">Sample return values:</h3>
+
+<pre><code>Returns the file contents.
+</code></pre>
+
+<h3 id="http_error_codes">HTTP Error Codes</h3>
+
+<p>404 File Not Found
+401 Unauthorized</p>
+
+<h2 id="create_share">Create Share</h2>
+
+<h3 id="url">URL</h3>
+
+<pre><code>https://api.kanbox.com/0/share&lt;path&gt;
+</code></pre>
+
+<h3 id="methods">Methods</h3>
+
+<p>POST</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<p><strong>path</strong> <em>required</em> A path of folder that you want to share. This parameter is part of the request url.</p>
+
+<h3 id="post_body">Post Body</h3>
+
+<p><strong>json string</strong> <em>required</em> an array of users who you want to share the folder to.</p>
+
+<h3 id="sample_url">Sample URL:</h3>
+
+<pre><code>https://api.kanbox.com/0/share/iamafolder/thesharefolder
+</code></pre>
+
+<pre><code>POST /0/share/iamafolder/thesharefolder HTTP/1.1
+Host: api.kanbox.com
+Authorization : Bearer <access_token>
+</code></pre>
+
+<h3 id="sample_post_body">Sample Post Body:</h3>
+
+<p><code>{["mike@163.com","god@163.com","xx@163.com"]}</code></p>
+
+<h3 id="sample_return_values">Sample return values:</h3>
+
+<p>For a successful operation:</p>
+
+<p><code>{ "status": "ok",
+ "results":
+   [
+     {"path":"\/abc\/bcd", "user":"cheng@kanbox.com", "status:"error", "errorCode":"USER_NOT_EXIST"},
+     {"path":"\/movie\/act","user":"cheng@kanbox.com", "status:"ok"},
+     {"path":"\/movie\/art","suser":"chen@kanbox.com", "status:"ok"}
+   ]
+}</code></p>
+
+<h3 id="http_error_codes">HTTP Error Codes</h3>
+
+<p>406 User Not Active</p>
+
+<h2 id="get_invite_list">Get Invite List</h2>
+
+<h3 id="url">URL</h3>
+
+<pre><code>https://api.kanbox.com/0/pendingshares
+</code></pre>
+
+<h3 id="methods">Methods</h3>
+
+<p>GET</p>
+
+<h3 id="sample_url">Sample URL:</h3>
+
+<pre><code>https://api.kanbox.com/0/pendingshares
+</code></pre>
+
+<pre><code>GET /0/pendingshares HTTP/1.1
+Host: api.kanbox.com
+Authorization : Bearer <access_token>
+</code></pre>
+
+<h3 id="sample_return_values">Sample return values:</h3>
+
+<p>For a successful operation:</p>
+
+<p><code>{
+ "status":"ok",
+ "pending":
+     [
+      {"path":"\/c","user":"a@a.com", "message":"latestmsg"},
+      {"path":"\/b","user":"a@a.com", "message":"latestmsg"},
+      {"path":"\/a","user":"a@a.com", "message":"latestmsg"}
+     ]
+}</code></p>
+
+<h3 id="http_error_codes">HTTP Error Codes</h3>
+
+<p>406 User Not Active</p>
+
+<h2 id="process_invite">Process Invite</h2>
+
+<h3 id="url">URL</h3>
+
+<pre><code>https://api.kanbox.com/0/pendingshares
+</code></pre>
+
+<h3 id="methods">Methods</h3>
+
+<p>POST</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<h3 id="post_body">Post Body</h3>
+
+<p><strong>json string</strong> <em>required</em> an array contains three variables,the folder that you want to share,the account that you want to share to,
+the type that you want to deal with the invite.</p>
+
+<h3 id="sample_url">Sample URL:</h3>
+
+<pre><code>https://api.kanbox.com/0/pendingshares
+</code></pre>
+
+<pre><code>POST /0/pendingshares HTTP/1.1
+Host: api.kanbox.com
+Authorization : Bearer <access_token>
+</code></pre>
+
+<h3 id="sample_post_body">Sample Post Body:</h3>
+
+<p><code>{"path":"\/abc\/bcd", "user":"cheng@kanbox.com", "accept":true}</code></p>
+
+<h3 id="sample_return_values">Sample return values:</h3>
+
+<p>For a successful operation:</p>
+
+<p><code>{ "status": "ok"}</code></p>
+
+<h3 id="http_error_codes">HTTP Error Codes</h3>
+
+<p>406 User Not Active</p>
+
+<h2 id="process_invite">Check Owner</h2>
+
+<h3 id="url">URL</h3>
+
+<pre><code>https://api.kanbox.com/0/checkowner
+</code></pre>
+
+<h3 id="methods">Methods</h3>
+
+<p>GET</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<p><strong>path</strong> <em>required</em> A path of a shered folder that you want to check if you are it's owner. This parameter is part of the request url.</p>
+
+<h3 id="sample_url">Sample URL:</h3>
+
+<pre><code>https://api.kanbox.com/0/checkowner/sharefolderex
+</code></pre>
+
+<pre><code>GET /0/checkowner/sharefolderex HTTP/1.1
+Host: api.kanbox.com
+Authorization : Bearer <access_token>
+</code></pre>
+
+<h3 id="sample_return_values">Sample return values:</h3>
+
+<p>For a successful operation:</p>
+
+<p><code>{ "status": "ok","isowner":false}</code></p>
+
+<h3 id="http_error_codes">HTTP Error Codes</h3>
+
+<p>406 User Not Active</p>

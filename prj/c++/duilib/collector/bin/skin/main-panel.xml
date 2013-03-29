@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window size="802,602" mininfo="802,602" caption="0,0,0,52" roundcorner="5,5">
+  <Font name="微软雅黑" size="12" bold="false" default="true" />
+  <Font name="微软雅黑" size="12" bold="true" />
+  <Default name="VScrollBar" value="thumbnormalimage=&quot;file='default/sys-vscroll-normal.png' corner='4,10,4,10'&quot; thumbhotimage=&quot;file='default/sys-vscroll-hot.png' corner='4,10,4,10'&quot; thumbpushedimage=&quot;file='default/sys-vscroll-pushed.png' corner='4,10,4,10'&quot; showbutton1=&quot;false&quot; showbutton2=&quot;false&quot; width=&quot;9&quot;" />
+  <Default name="HScrollBar" value="thumbnormalimage=&quot;file='default/sys-hscroll-normal.png' corner='10,4,10,4'&quot; thumbhotimage=&quot;file='default/sys-hscroll-hot.png' corner='10,4,10,4'&quot; thumbpushedimage=&quot;file='default/sys-hscroll-pushed.png' corner='10,4,10,4'&quot; showbutton1=&quot;false&quot; showbutton2=&quot;false&quot; height=&quot;9&quot;" />
+  <VerticalLayout name="main" bkimage="file='default/main-bk.png' corner='5,82,4,33'" inset="1,1,1,1">
+	<HorizontalLayout name="header" height="52">
+		<HorizontalLayout width="150" height="28" inset="5,0,0,0">
+			<Control bkimage="default/head-kanbox.png" width="28" />
+			<Label text="" font="1" />
+		</HorizontalLayout>
+		<Control />
+		<HorizontalLayout name="sysbtn" width="92" height="28" padding="0,-1,0,0">
+			<Button name="sys-min-btn" width="28" height="18" normalimage="file='default/sys-min-btn.png' source='0,0,28,18'" hotimage="file='default/sys-min-btn.png' source='0,18,28,36'" pushedimage="file='default/sys-min-btn.png' source='0,36,28,54'" tooltip="最小化" />
+			<Button name="sys-max-btn" width="28" height="18" normalimage="file='default/sys-max-btn.png' source='0,0,28,18'" hotimage="file='default/sys-max-btn.png' source='0,18,28,36'" pushedimage="file='default/sys-max-btn.png' source='0,36,28,54'" tooltip="最大化" />
+			<Button name="sys-restore-btn" width="28" height="18" visible="false" normalimage="file='default/sys-restore-btn.png' source='0,0,28,18'" hotimage="file='default/sys-restore-btn.png' source='0,18,28,36'" pushedimage="file='default/sys-restore-btn.png' source='0,36,28,54'" tooltip="还原" />
+			<Button name="sys-close-btn" width="37" height="18" normalimage="file='default/sys-close-btn.png' source='0,0,37,18'" hotimage="file='default/sys-close-btn.png' source='0,18,37,36'" pushedimage="file='default/sys-close-btn.png' source='0,36,37,54'" tooltip="关闭" />
+        </HorizontalLayout>
+	</HorizontalLayout>
+	<HorizontalLayout name="body" bkimage="file='default/body-bk.png' corner='1,1,1,1'">
+		<VerticalLayout>
+			<HorizontalLayout name="oparetion" height="64">
+				<Button name="newTask" width="64" bkimage="default/main-new-btn.png" tooltip="新建任务" />
+				<Button name="startTask" width="64" bkimage="default/main-start-btn.png" tooltip="开始任务" />
+				<Button name="pauseTask" width="64" bkimage="default/main-pause-btn.png" tooltip="暂停任务" />
+				<Button name="editTask" width="64" bkimage="default/main-edit-btn.png" tooltip="编辑任务" />
+				<Button name="detailTask" width="64" bkimage="default/main-detail-btn.png" tooltip="参看详情" />
+				<Button name="delTask" width="64" bkimage="default/main-del-btn.png" tooltip="删除任务" />
+				<Control />
+			</HorizontalLayout>
+			<HorizontalLayout name="files">
+				<List name="filelist" vscrollbar="true" hscrollbar="true" itemalign="center">
+					<ListHeader height="24" bordersize="1" bordercolor="0xFFDDDDDD">
+						<ListHeaderItem text="任务名" width="100" sepwidth="1" sepimage="file='default/list-header-sep.png'" />
+						<ListHeaderItem text="状态" width="100" sepwidth="1" sepimage="file='default/list-header-sep.png'" />
+						<ListHeaderItem text="速度" width="100" sepwidth="1" sepimage="file='default/list-header-sep.png'" />
+						<ListHeaderItem text="最近修改" width="100" sepwidth="1" sepimage="file='default/list-header-sep.png'" />
+					</ListHeader>				
+				</List>
+			</HorizontalLayout>
+		</VerticalLayout>
+	</HorizontalLayout>
+	<HorizontalLayout name="footer" height="30">
+	</HorizontalLayout>
+  </VerticalLayout>
+</Window>

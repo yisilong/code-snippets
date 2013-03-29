@@ -1,0 +1,4 @@
+@charset "utf-8";
+/* CSS Document */
+.tips_top{ position:fixed; _position:absolute; left:396px; top:0px;_top:0px; margin:0px auto; background:#c2e117; padding:0px 0px; z-index:1002; text-align:center; line-height:20px;color:#596c02;}
+.tips_top div {padding:0 4px 0 4px;}

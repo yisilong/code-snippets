@@ -1,0 +1,10 @@
+li{
+	list-style-type: none;
+}
+#posts .type{
+	margin-right: 5px;
+}
+#pages li{
+	float: left;
+	margin: 5px;
+}

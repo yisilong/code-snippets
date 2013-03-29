@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>test</title>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+<div id="header"></div>
+<div style="margin-top:30px;">
+<script type="text/javascript">
+	//document.write('<div id="nav"></div>');
+	for(var i=0;i<100;i++)
+		document.write('<div>'+i+' hello world'+'</div>');
+</script>
+</div>
+<div id="nav"></div>
+<script type="text/javascript">
+	for(var i=100;i<200;i++)
+		document.write('<div>'+i+' hello world'+'</div>');
+</script>
+<script type="text/javascript">
+function getElementViewTop(element){
+　　var actualTop = element.offsetTop;
+　　var current = element.offsetParent;
+　　while (current !== null){
+		actualTop += current.offsetTop;
+		current = current.offsetParent;
+　　}
+	var elementScrollTop=0;
+　　if (document.compatMode == "BackCompat"){
+		elementScrollTop=document.body.scrollTop;
+　　} else {
+		elementScrollTop=document.documentElement.scrollTop; 
+　　}
+	return actualTop;
+　//　return actualTop-elementScrollTop;
+}
+// 说明：用 Javascript 获取指定页面元素的位置
+// 整理：http://www.codebit.cn
+// 来源：YUI DOM
+ 
+function getElementPos(elementId) {
+ 
+    var ua = navigator.userAgent.toLowerCase();
+    var isOpera = (ua.indexOf('opera') != -1);
+    var isIE = (ua.indexOf('msie') != -1 && !isOpera); // not opera spoof
+ 
+    var el = document.getElementById(elementId);
+ 
+    if(el.parentNode === null || el.style.display == 'none')
+    {
+        return false;
+    }
+ 
+    var parent = null;
+    var pos = [];
+    var box;
+ 
+    if(el.getBoundingClientRect)    //IE
+    {
+        box = el.getBoundingClientRect();
+        var scrollTop = Math.max(document.documentElement.scrollTop, document.body.scrollTop);
+        var scrollLeft = Math.max(document.documentElement.scrollLeft, document.body.scrollLeft);
+ 
+        return {x:box.left + scrollLeft, y:box.top + scrollTop};
+    }
+    else if(document.getBoxObjectFor)   // gecko
+    {
+        box = document.getBoxObjectFor(el);
+ 
+        var borderLeft = (el.style.borderLeftWidth)?parseInt(el.style.borderLeftWidth):0;
+        var borderTop = (el.style.borderTopWidth)?parseInt(el.style.borderTopWidth):0;
+ 
+        pos = [box.x - borderLeft, box.y - borderTop];
+    }
+    else    // safari & opera
+    {
+        pos = [el.offsetLeft, el.offsetTop];
+        parent = el.offsetParent;
+        if (parent != el) {
+            while (parent) {
+                pos[0] += parent.offsetLeft;
+                pos[1] += parent.offsetTop;
+                parent = parent.offsetParent;
+            }
+        }
+        if (ua.indexOf('opera') != -1
+            || ( ua.indexOf('safari') != -1 && el.style.position == 'absolute' ))
+        {
+                pos[0] -= document.body.offsetLeft;
+                pos[1] -= document.body.offsetTop;
+        }
+    }
+ 
+    if (el.parentNode) { parent = el.parentNode; }
+    else { parent = null; }
+ 
+    while (parent && parent.tagName != 'BODY' && parent.tagName != 'HTML')
+    { // account for any scrolled ancestors
+        pos[0] -= parent.scrollLeft;
+        pos[1] -= parent.scrollTop;
+ 
+        if (parent.parentNode) { parent = parent.parentNode; }
+        else { parent = null; }
+    }
+    return {x:pos[0], y:pos[1]};
+}
+ function findPosition( oElement ) 
+{
+  var x2 = 0;
+  var y2 = 0;
+  var width = oElement.offsetWidth;
+  var height = oElement.offsetHeight;
+  alert(width + "=" + height);
+  if( typeof( oElement.offsetParent ) != 'undefined' ) 
+  {
+    for( var posX = 0, posY = 0; oElement; oElement = oElement.offsetParent ) 
+    {
+      posX += oElement.offsetLeft;
+      posY += oElement.offsetTop;      
+    }
+    x2 = posX + width;
+    y2 = posY + height;
+    return [ posX, posY ,x2, y2];
+    
+    } else{
+      x2 = oElement.x + width;
+      y2 = oElement.y + height;
+      return [ oElement.x, oElement.y, x2, y2];
+  }
+}
+//-->
+function getScroll()
+{
+    var top, left, width, height;
+ 
+    if (document.documentElement && document.documentElement.scrollTop) {
+        top = document.documentElement.scrollTop;
+        left = document.documentElement.scrollLeft;
+        width = document.documentElement.scrollWidth;
+        height = document.documentElement.scrollHeight;
+    } else if (document.body) {
+        top = document.body.scrollTop;
+        left = document.body.scrollLeft;
+        width = document.body.scrollWidth;
+        height = document.body.scrollHeight;
+    }
+    return { 'top': top, 'left': left, 'width': width, 'height': height };
+}
+var nav = document.getElementById('nav');	
+var posTop = getElementViewTop(nav);
+window.addEventListener('scroll',function(event){
+	var scrollTop = getScroll().top;
+	var output = document.getElementById('output');
+	output.innerHTML = posTop +' '+scrollTop+' '+(posTop-scrollTop);
+	if(posTop>=30 && posTop-scrollTop <= 30) 
+		nav.className = 'nav fixed';
+	else nav.className = 'nav';
+},false);
+</script>
+<div id="output" style="position:fixed;width:60px;height:60px;right:100px;bottom:100px;background:#DDD">0</div>
+</body>
+</html>

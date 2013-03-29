@@ -1,0 +1,132 @@
+@charset "utf-8";
+.clear { //清除浮动
+	clear: both;
+}
+*{
+	margin:0; 
+	padding:0;
+}
+a {
+	color: #0060BF;
+	text-decoration: none;
+	cursor: pointer;
+}
+a:hover{
+	text-decoration: underline;
+}
+.block{
+	dispaly: block;
+	overflow: hidden;
+	float: left;
+}
+
+#file-container{
+	width: 800px;
+	margin: 0 auto;
+}
+.file-title{
+	width: 100%;
+	border: 1px solid #E8E8E8;
+	background-color: #F8F8F8;
+	height: 25px;
+	font-weight: bold;
+	text-align: left;
+}
+#file-title-bottom
+{
+	border-top: 0;
+}
+.file-name{
+	width: 57.99%;
+}
+.file-size{
+	width: 12%;
+}
+.file-time{
+	width: 22%;
+}
+.file-action{
+	width: 8%;
+}
+#file-container .block
+{
+	vertical-align: middle;
+	height: 25px;
+	line-height: 25px;
+}
+#file-container .block  .filename{
+	padding: 0 5px;
+}
+.checkbox{
+	float: left;
+	padding: 2px;
+	margin-left: 5px;
+}
+#file-list{
+	width: 100%;
+	border: 1px solid #E8E8E8;
+	border-top: 0;
+	overflow: auto;
+}
+.file{
+	height: 25px;
+	line-height: 25px;
+	border-bottom: 1px solid #DDD;
+}
+.odd{
+	background-color: #F8F8F8;
+}
+#file-container .block .typefolder{
+	padding-left: 20px;
+	background: url(../images/folder.png) no-repeat scroll 0 0 transparent;
+}
+#file-container .block .typefile{
+	padding-left: 20px;
+	background: url(../images/file.png) no-repeat scroll 0 0 transparent;
+}
+#crumb,#operate {
+	margin: 10px 0;
+	font-size: 0.9em;
+	color: #1F1F1F;
+	padding: 0 5px;
+}
+.crumb-linker {
+	font-size: 0.6em;
+	color: #666;
+	padding: 0 10px;
+}
+#searchform {
+	outline: none;
+	display: block;
+	float: right;
+}
+#s {
+	float: right;
+	width: 72px;
+	height: 22px;
+	background: url(../images/search.png) no-repeat 5px 6px;
+	border: 1px solid #DDD;
+	color: #888;
+	font: 15px "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: 300;
+	line-height: 1.2em;
+	padding: 4px 10px 4px 28px;	
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;	
+	-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.1);
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.1);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,0.1);
+	-webkit-transition-duration: 400ms;
+	-webkit-transition-property: width, background;
+	-webkit-transition-timing-function: ease;
+	-moz-transition-duration: 400ms;
+	-moz-transition-property: width, background;
+	-moz-transition-timing-function: ease;
+	-o-transition-duration: 400ms;
+	-o-transition-property: width, background;
+	-o-transition-timing-function: ease;
+}
+#searchsubmit {
+	display: none;
+}

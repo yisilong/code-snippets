@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>css三角形</title>
+        <style>
+			.tip{
+				float: left;
+			}
+            .tip .outerTipArrow,.tip .outerTipArrow .innerTipArrow{
+                border-color: transparent transparent #999 transparent;
+                border-style: solid;
+                border-width: 8px;
+                padding: 0;
+                width: 0;
+                height: 0;
+                /* ie6 height fix */
+                font-size: 0;
+                line-height: 0;
+                /* ie6 transparent fix */
+                _border-top-color: #dddddd;
+                _border-bottom-color: #dddddd;
+                _filter: chroma( color = #dddddd);
+            }
+			.tip .outerTipArrow{
+				margin-left: 20px;
+				position: relative;
+				opacity: 0.9;
+			}
+			.tip .outerTipArrow .innerTipArrow{
+				margin-left: -8px;
+				margin-top: -7px;
+                border-color: transparent transparent #FFF transparent;
+			}
+			.tip .content{
+				width: 550px;
+				height: 70px;
+				overflow: hidden;
+				padding: 5px;
+				border: 1px solid #999;
+				background: #FFF;
+				box-shadow: 2px 2px 2px #CCC;
+				border-radius: 3px;				
+			}
+        </style>
+    </head>
+    <body>
+	<div class="tip">
+		<div class="outerTipArrow">
+			<div class="innerTipArrow"></div>
+		</div>
+		<div class="content"></div>
+	</div>
+</body>
+</html>

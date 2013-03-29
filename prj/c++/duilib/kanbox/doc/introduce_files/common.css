@@ -1,0 +1,13 @@
+@charset "utf-8";
+/* CSS Document */
+
+.nav_hover{ background:#24598f; text-decoration:none;}
+.page{ width:100%; min-height:100%; position: relative; margin:0px auto; _height:100%; overflow: visible;}
+
+a{blr:expression(this.onFocus=this.close());} /* 只支持IE，过多使用效率低 */
+a{blr:expression(this.onFocus=this.blur());} /* 只支持IE，过多使用效率低 */
+a:focus { -moz-outline-style: none; } /* IE不支持 */ 
+a:hover{ text-decoration:none;}
+
+/*dialog 重新定义 by luobaohui*/
+.ui-dialog .ui-dialog-titlebar-close{display:none;}

@@ -1,0 +1,12 @@
+.jnotify-item
+{
+    height: auto;
+    padding: 0px 4px 0px 4px;
+    margin: 0 4px 0 4px;
+    display: block;
+    position: relative;
+}
+
+#topmsg{
+	/*;*/
+}

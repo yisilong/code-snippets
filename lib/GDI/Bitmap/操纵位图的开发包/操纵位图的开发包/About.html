@@ -1,0 +1,243 @@
+</HTML>
+<HEAD>
+<TITLE>关于</TITLE>
+</HEAD>
+<a name="catalog"> </a>
+<BODY background="image.jpg">
+<center><font face="宋体" size="+2" color="Teal"><b>关于</b></font></center>
+<hr width="100%" align="center">
+
+<img border="0" src="image02.jpg" align="right" vspace="1" hspace="1" usemap="#return">
+<map name="return">
+<area shape="rect" coords="4,4,96,24" href="index.html">
+</map>
+
+<pre>
+<br>
+<ul>
+<font face="楷体_GB2312" size="+2" color="#BABE07">
+<li><a href="#copyright" style="color:#BABE07;font-weight:bold">关  于  版  权</a>
+<li><a href="#backdrop" style="color:#BAAE07;font-weight:bold">CBmpProc 类 的 用 途 及 编 写 这 个 类 的 原 因</a>
+<li><a href="#document" style="color:#BA8E07;font-weight:bold">有  关  VC++  的  网  络  资  源</a>
+<li><a href="#address" style="color:#BA8E07;font-weight:bold">联  系  方  法</a>
+</font>
+
+
+<center>
+<font face="宋体" size="+1" color="#5FB0BC">
+这一章主要描述有关CBmpProc类的版权和它的用途，以及有关的背景信息，
+您在使用这个类之前应该仔细看一下，这对您用好这个软件会有很大帮助。
+
+<b>                                       YZ</b> 2000.01
+</font>
+</center>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+
+<br>
+<br>
+<br>
+<br>
+
+<map name="Draw">
+<area shape="rect" coords="4,4,96,24" href="#catalog">
+</map>
+
+<pre>
+<font face="宋体" size="+1" color="#5052AD">
+<a name="copyright">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>Copyright</i></b></font>
+<hr width="100%" align="center" noshade>
+    本人开发这个软件（CBmpProc）的目的与Linux软件相同，没有任何商业企图。任何
+人或组织可以无偿使用（包括浏览、修改、编译、复制、传播、添加署名），但这些行为
+必须符合一个前提，即：没有商业目的（非赢利性），如果您符合这一条件，您就可以充
+分行使以上我付与您的这些权利，然而，如果您的行为直接或间接的是以赢利为目的的，
+那么您必须得到我隐喻的或书面的许可，否则均视为侵权行为。
+
+注：本软件的署名权是半开放的，即您只能向其中添加署名，而不能删除其中已有的署名，
+    否则将被视为侵权。
+    本人对该软件不作任何种类的担保，不论是显示的或隐含的。
+
+上文中一些概念的解释：
+
+    修改 — 包括添加代码、删除代码、加入注释等
+    复制 — 包括复制软件的局部或全部
+    传播 — 包括以磁盘、光盘、网络、纸张等载体形式传播
+  本软件 — 包括BmpProc.h、BmpProc.cpp及当前这个文档文件
+    版本 — 2.4
+    署名 — 本软件的当前署名为：YZ
+
+	感谢 PJ Naughter, Jean Edouard, Lachand Robert，他们的程序给我很大的启发。
+	本软件中出现的Windows、Windows 95、Windows 98是微软(Microsoft)公司注册商
+	标，商标权归微软公司所有
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="backdrop">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>Backdrop</i></b></font>
+<hr width="100%" align="center" noshade>
+    可能有的朋友到现在还没弄明白这个软件到底是个什么东西，不要紧，下面我就
+详细的解释一下。
+    我提供给您的是一个用C++语言编写的一个类，包括类的定义文件（BmpProc.h）
+和类成员函数的源代码文件（BmpProc.h）。开发平台是Windows 95 + VC++5.0。所
+以如果您不编写Windows程序或者使用的编译器不是VC++（必须是VC++4.2或更高）那
+么这个类对您可能没有什么用处。:-(
+    以下是这个类的功能：该类主要是完成一些有关位图的操作，包括将位图文件读
+入内存、将位图显示在窗口中、以及保存位图到指定的文件当中等等。举个例子来说
+，假如你想用磁盘中一个位图文件作为窗口的背景，那么你就得先将这个文件读入内
+存，然后把它选入设备描述表（DC），再在背景刷新时将它显示出来。说起来好像很
+容易，但实际上是很麻烦得，如果你使用这个类的话，完成以上这些操作只需调用一
+两个成员函数即可，非常方便。而且使用它也很容易，只需将这两个文件添加到你的
+程序项目当中就行了（具体的使用方法请参阅总目录中“使用”一章）
+    说了这么多，你可能对这个类有了一个大概的了解，现在我就解释一下编写这个
+类的原因，坦白的说，我之所以编写这个类是因为我对MFC中CBitmap这个位图类很不
+满意，或者说是有些失望。它并没有提供多少有用的功能，如果使用 API 函数的话
+不见得比使用这个类麻烦多少。于是经过一个多星期的奋斗终于搞出来了位图类
+CBmpProc ver1.03，之后又经过多次改进、完善，最终形成了你看到的CBmpProc ver
+2.4。我自己用着感觉不错，很顺手。但同时我也知道这里面肯定有欠缺甚至是错误
+的地方，所以希望哪位“同志”如果发现了错误或有更好的主意请一定和我联系（联
+系方法请见本章目录“联系方法”一节）
+
+
+				欢迎联络！
+
+
+                                                    <b>YZ</b> 2000.01
+<hr width="100%" align="center">
+<font face="Arial" size="+1" color="block"><b><i>End</i></b></font>
+<img src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="document">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>Document</i></b></font>
+<hr width="100%" align="center" noshade>
+<b>以下是一些有关VC++的网络站点，如果您上网的话不妨访问一下：</b>
+
+<a href="http://msdn.microsoft.com/VISUALC/">Microsofts VC++ page</a>
+	Microsoft Visual C++站点
+<a href="http://msdn.microsoft.com/vstudio/">Visual Studio Start Page</a>
+	Microsoft Visual Studio站点
+<a href="http://mfcfaq.stingray.com/">MFC FAQ Home Page</a>
+	MFC FAQ站点
+<a href="http://www.codeguru.com/">MFC Programmer's SourceBook</a>
+	Zafir Anjum 的MFC站点
+<a href="http://users.aol.com/chinajoe/wcmfclib.html">WorldCom MFC library Site</a>
+	MFC 站点
+<a href="http://www.msj.com">Microsoft Systems Journal</a>
+	Microsoft 系统杂志
+<a href="http://www.vcdj.com/">Visual C++ Developers Journal</a>
+	Visual C++ 开发杂志
+<a href="http://msdn.microsoft.com/developer/bookmag/visualc.htm">Visual C++ Magazines</a>
+	Microsoft Visual C++杂志
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="address">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>Contact</i></b></font>
+<hr width="100%" align="center" noshade>
+<b>以下是我的E-mail地址：</b>
+
+<a href="mailto:yzfree@sina.com">	yzfree@sina.com</a>
+<a href="mailto:yzfree@yeah.net">	yzfree@yeah.net</a>
+
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</font>
+</pre>
+</BODY>
+</HTML>

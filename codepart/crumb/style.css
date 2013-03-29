@@ -1,0 +1,61 @@
+body {
+	font-family: "lucida Grande",Verdana;
+}
+select, body, textarea {
+	font-size: 12px;
+}
+/* ==============Ãæ°üÐ¼µ¼º½============= */
+.breadcrumbs{
+	height:26px; 
+	overflow:hidden; 
+	border:1px solid #bebebe; 
+	border-width:0 0 0 1px; 
+	border-radius:2px 0 0 2px;
+	float:left;
+	padding:0;
+	margin:0;
+}
+.breadcrumbs li{
+	float:left; 
+	margin:0; 
+	padding:0; 
+	cursor:default; 
+	margin-left:-8px;
+}
+.breadcrumbs li a{
+	position:relative; 
+	background:url(bk.png) no-repeat right 0; 
+	color:#494949; 
+	float:left;  
+	padding:0 1.5em; 
+	line-height:26px; 
+	line-height:28px\9; 
+	outline:none;
+	text-decoration:none; 
+}
+.breadcrumbs li a:hover, .breadcrumbs li a:focus{
+	background-position:right -32px; 
+	color:#000; 
+	text-decoration:none;
+}
+.breadcrumbs li a:active{
+	background-position:right -64px;
+}
+.breadcrumbs li .crumb_last{
+	background:url(bk.png) no-repeat right -96px; 
+	padding:0 1.5em; 
+	color:#808080; 
+	line-height:26px; 
+	max-width:460px; 
+	white-space:nowrap; 
+	overflow:hidden; 
+}
+.breadcrumbs li.crumb1{z-index:10; margin-left:0;}
+.breadcrumbs li.crumb1 a{z-index:10; padding-left:1em;}
+.breadcrumbs li.crumb2 a{z-index:9;}
+.breadcrumbs li.crumb3 a{z-index:8;}
+.breadcrumbs li.crumb4 a{z-index:7;}
+.breadcrumbs li.crumb5 a{z-index:6;}
+.breadcrumbs li.crumb6 a{z-index:5;}
+.breadcrumbs li.crumb7 a{z-index:4;}
+.breadcrumbs li.crumb8 a{z-index:3;}

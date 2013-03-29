@@ -1,0 +1,489 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+<title>API介绍</title>
+<link href="introduce_files/header.css" type="text/css" rel="stylesheet">
+<link href="introduce_files/footer.css" type="text/css" rel="stylesheet">
+<link href="introduce_files/common.css" type="text/css" rel="stylesheet">
+<link href="introduce_files/introduce.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="introduce_files/jquery-1.js"></script>
+<script type="text/javascript" src="introduce_files/infofloater.js"></script>
+<script type="text/javascript" src="introduce_files/introduce.js"></script>
+</head>
+
+<body>
+<div class="page">
+	<div class="header" id="header">
+			<div class="header_main">
+	        		<div class="logo">
+	                		<img src="introduce_files/logo.jpg">
+	                </div>
+	                <div class="nav">
+	                		<a href="http://open.kanbox.com/index" class="api_index">首页</a>
+	                        <a href="http://open.kanbox.com/introduce" class="api_introduce nav_hover">API介绍</a>
+	                        <a href="http://open.kanbox.com/app" class="api_app">我的应用</a>
+	                        <a href="http://bbs.kanbox.com/categories/devandapi" class="api_bbs" target="_blank">开发者论坛</a>
+	                </div>
+	                
+	  					                <div class="top_user">
+						<div class="user_name"><a class="user_name_a" id="user_op_menu" title="huangdi915103@gmail.com">huangdi915103@gmail.com</a></div>
+						<div style="top: 57px; display: none;" class="user_f_div">
+            				<ul>
+								<li><a href="http://open.kanbox.com/interface/logout.php"><div class="icon4"></div>退出</a></li>	
+            				</ul>	
+	    				</div>
+	    			</div>
+	    				        </div>
+	</div>
+
+<link type="text/css" rel="stylesheet" href="introduce_files/ui.css">
+<link type="text/css" rel="stylesheet" href="introduce_files/jquery.css">
+<link type="text/css" rel="stylesheet" href="introduce_files/base.css">
+<script type="text/javascript" src="introduce_files/jquery-1.js"></script>
+<script type="text/javascript" src="introduce_files/jquery_002.js"></script>
+<script type="text/javascript" src="introduce_files/jquery.js"></script>
+<script type="text/javascript" src="introduce_files/common.js"></script>
+<script type="text/javascript" src="introduce_files/header.js"></script>
+
+
+ 
+
+        <div class="main">
+        		<div class="main_left">
+                		
+                <div style="" id="leftnavarea" class="menu">
+                                <ul class="nav">
+                                        <span style="background: url(&quot;../images/introduce.gif&quot;) no-repeat scroll 0px 0px transparent;" class="navli">酷盘(Kanbox) API使用流程</span>
+                                        <a style="display: none;" href="#shiyongliucheng">概述</a>
+                                        <a style="display: none;" href="#12">应用程序状态</a>
+                                        <a style="display: none;" href="#13">定义</a>
+                                        <a style="display: none;" href="#14">更多定义</a>
+                                </ul>
+                                <ul class="nav">
+                                        <span style="background: url(&quot;../images/introduce.gif&quot;) no-repeat scroll 0px 0px transparent;" class="navli">OAuth相关说明</span>
+                                        <a style="display: none;" href="#oauthshuoming">概述</a>
+                                        <a style="display: none;" href="#22">获取Authorization Code</a>
+                                        <a style="display: none;" href="#23">获取Token</a>
+                                        <a style="display: none;" href="#24">Refresh Token</a>
+                                </ul>
+        
+                                <ul class="nav">
+                                        <span style="background: url(&quot;../images/introduce.gif&quot;) no-repeat scroll 0px 0px transparent;" class="navli">酷盘API技术文档</span>
+                                        <a style="display: inline;" href="#apiwendang">用户信息</a>
+                                        <a style="display: inline;" href="#32">文件列表</a>
+                                        <a style="display: inline;" href="#33">下载</a>
+                                        <a style="display: inline;" href="#34">上传</a>
+                                        <a style="display: inline;" href="#35">删除</a>
+                                        <a style="display: inline;" href="#36">移动</a>
+                                        <a style="display: inline;" href="#37">复制</a>
+                                        <a style="display: inline;" href="#38">创建新文件夹</a>
+                                        <a style="display: inline;" href="#39">创建共享</a>
+                                        <a style="display: inline;" href="#40">获取共享邀请列表</a>
+                                        <a style="display: inline;" href="#41">处理共享请求</a>
+                                </ul>
+						</div></div>
+                <a class="wendang" id="shiyongliucheng"></a>
+                <div class="main_right">
+                    
+                        <div class="right_top">
+                        		<span>酷盘(Kanbox) API使用流程</span>
+                        </div>
+                        
+                        <div class="text">
+                        		<span id="11">概述</span>
+                                <p>酷盘（Kanbox）API允许您通过简单的HTTP调用来实现对酷盘用户的账户文件进行管理。
+								<br>使用酷盘API，您需要在酷盘Developer Page注册一个新的应用程序。随后您会获得客户端ID（Client 
+ID）和密钥（Secret）。客户端ID和密钥会帮助您初始化应用程序连接时的授权和认证阶段。请妥善保存账户和密钥信息，您仅在使用HTTPS协议下
+的POST传输信息时才需要提供客户端ID和密钥。
+								<br>在操作之前，您必须验证自己的身份，并且获得用户授权。该流程遵循OAuth 2.0 Draft 15中section 
+4.1“Authorization 
+Code”之规定。此阶段须将您的用户转接到酷盘的服务器上登录，然后一键同意或拒绝授权此应用。这个过程结束时，如下文详述，您会收到一个Access
+ Token，您将使用它来履行文件操作。
+								<br>文件操作是通过使用GET或POST来调用URL，后面的章节有详细说明。响应采用JSON编码，除上传和下载以外，抛错时返回HTTP 错误。
+                                </p>
+                                <span id="12" class="tspan">应用程序状态</span>
+                                <p>新注册的应用状态会自动标记为开发中。在公开发布应用之前，您需要登录Developer Page申请将状态更改成为审核状态。您需要提交如何审查这款应用程序的细节流程。我们将会对您的应用进行审查，并通过电子邮件通知您是否批准（拒绝）。
+                                <br>
+                                </p>
+                                
+                                <span id="13" class="tspan">定义</span>
+                                <p>OAuth 2.0 Draft 中的字符与含义
+                                <br>Resource Owner 酷盘用户。
+                                <br>Client 您的应用。使用酷盘API存取资源所有者文件的应用程序。
+                                <br>Authorization Server 获取Authorization Code和Access Token的服务器。当前链接为 https://auth.kanbox.com。
+                                <br>Resource Server 取得Access Token以后进行文件管理的服务器。当前链接为 https://api.kanbox.com 和 http://api-upload.kanbox.com。
+								<br>
+								</p>
+                                
+                                <span id="14" class="tspan">更多定义</span>
+                                <p>Web App 在web服务器端运行的应用程序。
+								<br>Native App 在计算机或移动设备上运行的应用程序。在授权阶段时，您需要采用web视图。                               	
+								<br>
+								</p>
+                        </div>
+                       
+                        
+                        
+                                <div class="right_top trighttop" id="oauthshuoming">
+                                        <span>OAuth相关说明</span>
+                                </div>
+
+                        		<div class="text">
+		                        		<span id="21">概述</span>
+		                                <p>在使用API进行操作之前，您需要获得Access 
+Token。取得Access Token后，您同时还会得到一枚Refresh Token。您须将Access 
+Token作为每一项操作请求的参数。Token的寿命是一小时。一旦一个 Access Token过期了（或即将过期），您可以通过Refresh 
+Token来获取新的Access Token。
+		                                <br>
+		                                </p>
+		                                
+		                                <p>如何获取Token？</p>
+		                                <p>●第一步是取得Authorization 
+Code。您需要提供客户端ID、重定向URI以及将酷盘服务器端页面提供给应用程 
+序的用户。酷盘会提示用户登录（或注册）并批准您的应用使用API。然后再将用户通过您提供的URI重定向到您的应用上，并以参数的形式发送 
+Authorization Code。（由于本地应用【Native app】不在web端运行，您可以采用特殊URI字符串来实现重定向。）
+										<br>●第二步是通过Authorization Code获取Access Token和Refresh Token。您需要向Token终端提交一个POST请求，提供Authorization Code、客户端ID和密钥。
+		                                <br>
+		                                </p>
+		                                
+		                                <p>如何使用Access Token？</p><p>
+		                                </p><p>当调用一款API操作（详情请见后面章节）时，您需要在Http 
+Header中提供一个Access Token，如【Bearer Tokens 
+draft4】定义的【http://tools.ietf.org/html/draft-ieft-oauth-v2-bearer-04】.例如，
+ 请求用户信息的操作如下（假设您的Authorization Code为SlAV32hkKG）：
+										<br>GET /0/info HTTP/1.1
+										<br>Host: api.kanbox.com
+										<br>Authorization : Bearer SlAV32hkKG
+										<br>如果您的客户端架构不支持Http Header，您可以将Authorization Code当作请求中最后一个参数，例如：https://api.kanbox.com/0/info?bearer_token=SlAV32hkKG
+										<br>
+										</p>
+										
+										<span id="22" class="tspan">获取Authorization Code</span>
+		                                <p>URL
+										<br>https://auth.kanbox.com/0/auth
+										<br>方法
+										<br>GET
+										<br>参数
+										<br>response_type 必选 必须设置成“code”。
+										<br>client_id 必选 客户端提供的客户端ID（可以通过Developer Page获取）。
+										<br>redirect_uri 必选 当取得Authorization Code以后，将用户重新导向该URI。本地应用程序可以采用特殊字符串：urn:ietf:wg:oauth:2.0:oob。
+										<br>user_language 可选 二位语言编码(依据 ISO 639-1)。例如：“ZH”代表中文。
+										<br>user_platform 可选 以下字符串识别调用操作系统平台： "web", "windows", "mac", "linux", "iphone", "ipad", "android", "symbian"。
+										<br>URL示例
+										<br>假如您是web应用(web app)，客户端ID是524756055226487，重新导向URI是 https://client.example.com/cb:
+										<br>https://auth.kanbox.com/0/auth?
+										    <br>response_type=code&amp;
+										    <br>client_id=524756055226487&amp;
+										    <br>platform=web&amp;
+										    <br>redirect_uri=https%3A%2F%2Fclient%2Eexample%2Ecom%2Fcb&amp;
+										    <br>user_language=ZH
+										<br>响应示例
+										<br>用户认证成功以后，酷盘会将用户转接到以下地址：
+										<br>https://client.example.com/cb?code=i1WsRn1uB1
+										<br>注：成功认证的链接中，code字段后面的“i1WsRn1uB1”即是返回的authorization code。
+										<br>如果用户拒绝，将会转接到以下地址：
+										<br>https://client.example.com/cb?error=access_denied
+										<br>OAuth 2.0 Draft中定义了一些可能出现的错误：invalid_request, access_denied 和 unsupported_response_type。
+										<br>
+										</p>
+										
+										<span id="23" class="tspan">获取Token</span>
+		                                <p>URL
+										<br>https://auth.kanbox.com/0/token
+										<br>方法
+										<br>POST
+										<br>参数
+										<br>grant_type 必选 必须设置成“authorization_code”。
+										<br>client_id 必选 客户端ID（可以通过Developer Page获取）。
+										<br>client_secret 必选 客户端密钥（可以通过Developer Page获取）。
+										<br>code 必选 之前获得的Authorization Code（获取Authorization Code）。
+										<br>redirect_uri 必选 之前提供的重定向URI（获取Authorization Code）。
+										<br>请求示例
+										<br>POST /0/token HTTP/1.1
+										    <br>Host: auth.kanbox.com
+										    <br>Content-Type: application/x-www-form-urlencoded
+										    <br>grant_type=authorization_code&amp;
+										    <br>client_id=s6BhdRkqt3&amp;
+										    <br>client_secret=gX1fBat3bV&amp;
+										    <br>code=i1WsRn1uB1&amp;
+										    <br>redirect_uri=https%3A%2F%2Fclient%2Eexample%2Ecom%2Fcb
+										<br>响应示例
+										<br>{
+										   <br>"access_token": "SlAV32hkKG",
+										    <br>"token_type": "Bearer"
+										    <br>"expires_in": 3600,
+										    <br>"refresh_token": "5c32995dd5c7b3ff8e1a6b047e9f3af4"
+										<br>}
+										<br>
+										</p>
+										
+										<span id="24" class="tspan">Refresh Token</span>
+		                                <p>使用过期的Token进行API操作，将会返回HTTP 401未授权提示。 当您的Token即将过期或已经过期时，您可以使用Refresh Token通过相同的URL获取一个新的初始Access Token。
+										<br>请求示例
+										<br>POST /0/token HTTP/1.1
+										    <br>Host: auth.kanbox.com
+										    <br>Content-Type: application/x-www-form-urlencoded
+										
+										    <br>grant_type=refresh_token&amp;
+										    <br>client_id=s6BhdRkqt3&amp;
+										    <br>client_secret=gX1fBat3bV&amp;
+										    <br>refresh_token=5c32995dd5c7b3ff8e1a6b047e9f3af4
+										</p>
+		                        </div>
+		               
+		                        
+                       
+                        
+                        	
+                                <div class="right_top trighttop" id="apiwendang">
+                                        <span>酷盘API技术文档</span>
+                                        <a href="#" name="wendang" id="#wendang" style="display:none;">下载文档</a>
+                                </div>
+
+                        		<div class="text">
+		                        		<span id="31">用户信息</span>
+		                                <p>返回用户信息，如邮件地址、磁盘空间和使用情况。
+										<br>URL
+										<br>https://api.kanbox.com/0/info
+										<br>方法
+										<br>GET
+										<br>返回值示例：
+										<br>{ "email": "user@gmail.com", "space_quota": 16106127360, "space_used": 121092528 }
+										<br>C类对象用户操作Objective-C Client Usage
+										<br>[kanboxClient getAccountInfo];
+										<br>...
+										<br>-(void)kanboxClient:(KBXClient *)client didRecieveAccountInfo:(NSDictionary *)accountInfo {
+										<br>    NSLog(@"User email is %@", [accountInfo objectForKey:kKBXAccountInfoEmailKey]);
+										<br>}
+		                                <br>
+		                                </p>
+		                                
+		                                <span id="32" class="tspan">文件列表</span>
+		                                <p>此项操作可以得到文件夹中的文件列表和子文件夹列表。请不要遍历每一个子文件夹去获取列表，除非必要（即当用户选择这个子文件夹）。
+										<br>在用户登录时，请求列出根目录下的文件，“/”，此时没有hash。为了提高应用程序的性能，在得到列表以后，请保存
+hash，并将它关联到文件夹 
+中。下次再需要列出文件时，可以将它当成一个参数。在没有修改的前提下，您会得到一个“nochange”结果，否则您会得到一个新的当前文件夹内容列 
+表。
+										<br>URL
+										<br>https://api.kanbox.com/0/list<path>
+										<br>方法
+										<br>GET
+										<br>参数
+										<br>path 必选 文件夹路径。该参数是构成请求URL的一部分。
+										<br>hash 可选 应用程序采用最后一个已知hash。只有当文件被修改过，才会列出新的文件列表，否则返回"nochange"状态。
+										<br>URL示例：
+										<br>假设路径为“/images”，上次已知hash为XXE9832DFG1AS：
+										<br>https://api.kanbox.com/0/list/images?hash=XXE9832DFG1AS
+										<br>返回值示例
+										<br>一个未提交hash的成功操作，或是提交的hash和最新hash不匹配：
+										<br>{ "status": "ok",  "hash": "XXE9832DFG1AS", 
+										<br>"contents":[
+										<br>{
+										<br>"fullPath": "/images/Vacation Photos", "modificationDate":"2011-01-01 00:00:08", "fileSize": 0, "isFolder":true},
+										<br>"fullPath": "/images/flower.jpg", "modificationDate":"2011-01-01 00:00:08", "fileSize": 1213498, "isFolder":false}
+										<br>"fullPath": "/images/doggydog.jpg", "modificationDate":"2011-02-08 15:04:08", "fileSize": 204326, "isFolder":false}]
+										<br>] }
+										<br>提交hash和最新hash匹配的成功操作：
+										<br>{ "status": "nochange" }
+		                                <br>
+		                                </path></p>
+		                                
+		                                <span id="33" class="tspan">下载</span>
+		                                <p>URL
+										<br>https://api.kanbox.com/0/download<path>
+										<br>方法
+										<br>GET
+										<br>参数
+										<br>path 必选 文件路径。该参数是构成URL的一部分。
+										<br>URL示例：
+										<br>https://api.kanbox.com/0/download/folder1/file1.jpg
+										<br>返回值示例：
+										<br>返回文件内容 
+										<br>HTTP 错误代码
+										<br>404 找不到该文件 401 未授权
+										<br>
+										</path></p>
+										
+										<span id="34" class="tspan">上传</span>
+		                                <p>URL
+										<br>https://api-upload.kanbox.com/0/upload<path>
+										<br>注：上传服务器的地址与普通API操作的服务器地址不相同。 
+										<br>方法
+										<br>POST
+										<br>参数
+										<br>path 必选 新文件路径（必须同已存在的路径）。该参数是构成URL的一部分。
+										<br>file 必选 文件内容。
+										<br>HTTP 错误代码
+										<br>401 未授权 404 当前路径不存在
+										<br>
+										</path></p>
+										
+										<span id="35" class="tspan">删除</span>
+		                                <p>URL
+										<br>https://api.kanbox.com/0/delete<path>
+										<br>方法
+										<br>GET
+										<br>参数
+										<br>path 必选 文件或文件夹路径。该参数是构成请求URL的一部分。
+										<br>请求示例
+										<br>GET http://api.kabnbox.com/delete/pictures/flower.jpg
+										<br>返回值示例：
+										<br>操作成功时：
+										<br>{ "status": "ok" }
+										<br>C类对象用户操作Objective-C Client Usage
+										<br>[kanboxClient delete:@"/pictures/flower.jpg"];
+										<br>...
+										<br>-(void)kanboxClient:(KBXClient *)client didDeletePath:(NSString *)path {
+										<br>    NSLog(@"File '%@' deleted successfully", path);
+										<br>}
+										<br>-(void)kanboxClient:(KBXClient *)client failedDeletingPath:(NSString *)path withError:(KBXErrorCode)errorCode {
+										<br>    NSLog(@"File '%@' was not deleted", path);
+										<br>}
+										<br>
+										</path></p>
+										
+										<span id="36" class="tspan">移动</span>
+		                                <p>URL
+										<br>https://api.kanbox.com/0/move<path>
+										<br>方法
+										<br>GET
+										<br>参数
+										<br>path 必选 文件或文件夹路径。该参数是构成请求URL的一部分。
+										<br>destination_path 必选 移动文件或文件夹后的目标路径。
+										<br>URL示例：
+										<br>https://api.kanbox.com/0/move/pictures/flower.jpg?destination_path=/pictures/flower2.jpg
+										<br>返回值示例：
+										<br>操作成功时：
+										<br>{ "status": "ok" }
+										<br>
+										</path></p>
+										
+										<span id="37" class="tspan">复制</span>
+		                                <p>URL
+										<br>https://api.kanbox.com/0/copy<path>
+										<br>方法
+										<br>GET
+										<br>参数
+										<br>path 必选 文件或文件夹路径。该参数是构成请求URL的一部分。
+										<br>destination_path 必选 移动文件或文件夹后的目标路径。
+										<br>返回值示例：
+										<br>操作成功时：
+										<br>{ "status": "ok" }
+										<br>
+										</path></p>
+										
+										
+										<span id="38" class="tspan">创建新文件夹</span>
+		                                <p>URL
+										<br>https://api.kanbox.com/0/create_folder<path>
+										<br>方法
+										<br>GET
+										<br>参数
+										<br>path 必选 文件或文件夹路径。该参数是构成请求URL的一部分。
+										<br>返回值示例：
+										<br>操作成功时：
+										<br>{ "status": "ok" }
+										<br>
+										</path></p>
+										
+										<span id="39" class="tspan">创建共享</span>
+		                                <p>URL
+										<br>https://api.kanbox.com/0/share<path>
+										<br>方法
+										<br>POST
+										<br>参数
+										<br>path 必选 需要分享的文件夹路径。该参数是构成请求URL的一部分。示例如下：
+										<br>https://api.kanbox.com/0/share/iamafolder/thesharefolder
+										<br>POST参数 必选 需要分享的用户列表。该参数为json串，由用户名数组构成。示例如下：
+										<br>{["mike@163.com","god@163.com","xx@163.com"]}
+										<br>返回值示例：
+										<br>{ "status": "ok",
+ "results":
+   [
+     {"path":"\/abc\/bcd", "user":"cheng@kanbox.com", "status:"error", "errorCode":"USER_NOT_EXIST"},
+     {"path":"\/movie\/act","user":"cheng@kanbox.com", "status:"ok"},
+     {"path":"\/movie\/art","suser":"chen@kanbox.com", "status:"ok"}
+   ]
+}
+										<br>操作成功时：
+										<br>{ "status": "ok" }
+										<br>
+										</path></p>
+										
+										<span id="40" class="tspan">获取共享邀请列表</span>
+		                                <p>URL
+										<br>https://api.kanbox.com/0/pendingshares
+										<br>方法
+										<br>GET
+										<br>请求示例：
+										<br>https://api.kanbox.com/0/pendingshares
+										<br>返回值示例：
+										<br>{
+ "status":"ok",
+ "pending":
+     [
+      {"path":"\/c","user":"a@a.com", "message":"latestmsg"},
+      {"path":"\/b","user":"a@a.com", "message":"latestmsg"},
+      {"path":"\/a","user":"a@a.com", "message":"latestmsg"}
+     ]
+}
+										<br>操作成功时：
+										<br>{ "status": "ok" }
+										<br>
+										</p>
+										
+										<span id="41" class="tspan">处理共享请求</span>
+		                                <p>URL
+										<br>https://api.kanbox.com/0/pendingshares
+										<br>方法
+										<br>POST
+										<br>POSY参数：
+										<br>json字串，包含被邀请的文件夹路径，邀请者，及处理结果。示例如下：
+										<br>接受：{"path":"\/abc\/bcd", "user":"cheng@kanbox.com", "accept":true}
+										<br>返回值示例：
+										<br>操作成功时：
+										<br>{ "status": "ok" }
+										<br>
+										</p>
+		                        </div>		                        
+		                        
+		                        
+                       
+                        <a href="#header" class="fanhui">回到顶部</a>
+                </div>
+                <div class="clear"></div>
+        </div>
+
+	<div class="main_footer">
+		<div class="footer_border">
+			<div class="footer_main">
+				<div class="footer_nav">
+					<a href="http://www.kanbox.com/" target="_blank">首页</a>┊
+					<a href="http://www.kanbox.com/html/about/index.html" target="_blank">关于我们</a>┊
+					<a href="http://www.kanbox.com/related/download" target="_blank">下载酷盘</a>┊
+					<a href="http://bbs.kanbox.com/" target="_blank">论坛</a>┊
+					<a href="http://blog.kanbox.com/" target="_blank">博客</a>┊
+					<a href="http://help.kanbox.com/ihelp/index.html" target="_blank">帮助</a>
+				</div>
+				<div class="footer_logo"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<script type="text/javascript">
+$(function(){
+	$('.nav>span').hover(
+		function(){
+			$(this).css('background','url(../images/introduce.gif) no-repeat 0px -32px');
+		},
+		function(){
+			$(this).css('background','url(../images/introduce.gif) no-repeat 0px 0px');
+		}
+	);
+});
+</script>
+</body></html>

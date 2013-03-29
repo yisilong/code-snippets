@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window size="434,506" mininfo="434,506" caption="0,0,0,52" roundcorner="5,5" sizebox="4,4,6,6">
+  <Font name="微软雅黑" size="12" bold="false" default="true" />
+  <Font name="微软雅黑" size="12" bold="true" />
+  <VerticalLayout name="main" bkimage="file='default/mainbk.png' corner='5,82,4,33'" inset="1,1,1,1">
+	<HorizontalLayout name="header" height="52">
+		<HorizontalLayout width="150" height="28" inset="5,0,0,0">
+			<Control bkimage="default/head_kanbo.png" width="28" />
+			<Label text="kanbox便携版" font="1"/>
+		</HorizontalLayout>
+		<HorizontalLayout />
+		<HorizontalLayout name="sysbtn" width="64" height="28" padding="0,-1,0,0">
+			<Button name="sys_min_btn" width="28" height="18" normalimage="file='default/sys_min_btn.png' source='0,0,28,18'" hotimage="file='default/sys_min_btn.png' source='0,18,28,36'" pushedimage="file='default/sys_min_btn.png' source='0,36,28,54'" tooltip="最小化" />
+			<Button name="sys_close_btn" width="37" height="18" normalimage="file='default/sys_close_btn.png' source='0,0,37,18'" hotimage="file='default/sys_close_btn.png' source='0,18,37,36'" pushedimage="file='default/sys_close_btn.png' source='0,36,37,54'" tooltip="关闭" />
+        </HorizontalLayout>
+	</HorizontalLayout>
+	<HorizontalLayout name="body" bkimage="file='default/bodybk.png' corner='1,1,1,1'">
+		<WebBrowser homepage="https://auth.kanbox.com/0/auth?response_type=code&client_id=5515688500f9f4f7cd1147c59d54d310&platform=windows&redirect_uri=urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob&user_language=ZH" autonavi="true" />
+	</HorizontalLayout>
+	<HorizontalLayout name="footer" height="30">
+	</HorizontalLayout>
+  </VerticalLayout>
+</Window>

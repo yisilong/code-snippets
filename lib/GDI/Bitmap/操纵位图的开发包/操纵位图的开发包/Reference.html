@@ -1,0 +1,1709 @@
+<HTML>
+<HEAD>
+<TITLE>参考手册</TITLE>
+</HEAD>
+<a name="catalog"> </a>
+<BODY background="image.jpg">
+<center><font face="宋体" size="+2" color="Teal"><b>类函数参考手册</b></font></center>
+<hr width="100%" align="center">
+
+<img border="0" src="image02.jpg" align="right" vspace="1" hspace="1" usemap="#return">
+<map name="return">
+<area shape="rect" coords="4,4,96,24" href="index.html">
+</map>
+
+<pre>
+<font face="Arial" size="+1" color="Blue">
+<a href="#Create" style="color:#20D7C0"><b>Create *</b></a>				<a href="#CopyFromObject" style="color:#20D7C0"><b>CopyFromObject</b></a>	<a href="#CopyTranCenter" style="color:#DBDB5B"><b>CopyTranCenter</b></a>		<a href="#CBmpProc" style="color:#DBDB5B"><b>CBmpProc</b></a>
+<a href="#LoadFromFile" style="color:#1DD4BE"><b>LoadFromFile</b></a>			<a href="#CopyFromHbmp" style="color:#1DD4BE"><b>CopyFromHbmp</b></a>		<a href="#CopyTranTile" style="color:#D7D75B"><b>CopyTranTile</b></a>		<a href="#~CBmpProc" style="color:#D7D75B"><b>~CBmpProc</b></a>
+<a href="#LoadFromResourceID" style="color:#1AD1BC"><b>LoadFromResourceID</b></a>		<a href="#CopyTran" style="color:#1AD1BC"><b>CopyTran * </b></a>		<a href="#operator==" style="color:#D3D35B"><b>operator==</b></a>		<a href="#GetObject" style="color:#D3D35B"><b>GetObject</b></a>
+<a href="#LoadFromResourceName" style="color:#17CEBA"><b>LoadFromResourceName</b></a>	<a href="#CreateCompatible" style="color:#17CEBA"><b>CreateCompatible</b></a>	<a href="#operator!=" style="color:#CFCF5B"><b>operator!=</b></a>		<a href="#GetHDib" style="color:#CFCF5B"><b>GetHDib</b></a>
+<a href="#LoadFromObject" style="color:#14CBB8"><b>LoadFromObject</b></a>		<a href="#Attach" style="color:#14CBB8"><b>Attach</b></a>			<a href="#DrawTranCenter" style="color:#CBCB5B"><b>DrawTranCenter</b></a>		<a href="#ScanWidth" style="color:#CBCB5B"><b>ScanWidth</b></a>
+<a href="#LoadFromHbmp" style="color:#11C8B6"><b>LoadFromHbmp</b></a>			<a href="#Detach" style="color:#11C8B6"><b>Detach</b></a>			<a href="#DrawTranTile" style="color:#C7C75B"><b>DrawTranTile</b></a>		<a href="#BitsPerPixel" style="color:#C7C75B"><b>BitsPerPixel</b></a>
+<a href="#LoadFromClipboard" style="color:#0EC5B4"><b>LoadFromClipboard</b></a>		<a href="#SaveToClipboard" style="color:#0EC5B4"><b>SaveToClipboard</b></a>	<a href="#ExportRegion" style="color:#C3C35B"><b>ExportRegion</b></a>		<a href="#GetImageType" style="color:#C3C35B"><b>GetImageType</b></a>
+<a href="#Save" style="color:#0BC2B2"><b>Save</b></a>				<a href="#Clear" style="color:#0BC2B2"><b>Clear</b></a>			<a href="#Fill" style="color:#BFBF5B"><b>Fill</b></a>			<a href="#GetInAddInfo" style="color:#BFBF5B"><b>GetInAddInfo</b></a>
+<a href="#Draw" style="color:#08BFB0"><b>Draw</b></a>				<a href="#operator=" style="color:#08BFB0"><b>operator= * </b></a>		<a href="#ReSetColor" style="color:#BBBB5B"><b>ReSetColor</b></a>		<a href="#GetFileName" style="color:#BBBB5B"><b>GetFileName</b></a>
+<a href="#DrawTile" style="color:#05BCAE"><b>DrawTile</b></a>			<a href="#operator HBITMAP" style="color:#05BCAE"><b>operator HBITMAP</b></a>	<a href="#GetObjectCount" style="color:#B7B75B"><b>GetObjectCount</b></a>		<a href="#SetFileName" style="color:#B7B75B"><b>SetFileName</b></a>
+<a href="#DrawCenter" style="color:#02B9AC"><b>DrawCenter</b></a>			<a href="#IsValid" style="color:#02B9AC"><b>IsValid</b></a>			<a href="#Rect" style="color:#B3B35B"><b>Rect</b></a>
+<a href="#DrawTransparentInRect" style="color:#00B6AA"><b>DrawTransparentInRect</b></a>		<a href="#Size" style="color:#00B6AA"><b>Size</b></a>			<a href="#Width" style="color:#AFAF5B"><b>Width</b></a>
+<a href="#DrawTransparentInPoint" style="color:#00B3A7"><b>DrawTransparentInPoint</b></a>		<a href="#GetVersion" style="color:#00B3A7"><b>GetVersion</b></a>		<a href="#Height" style="color:#ABAB5B"><b>Height</b></a>			<a href="#Class" style="color:#C09090"><b>Class define</b></a>
+</font>
+<center>
+<font face="宋体" size="+1" color="#5FB0BC">
+左边偏绿色字体的是常用函数，右边黄色字体的是不常用函数。
+</font>
+</center>
+</pre>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<map name="Draw">
+<area shape="rect" coords="4,4,96,24" href="#catalog">
+</map>
+
+<pre>
+<font face="宋体" size="+1" color="#5052AD">
+
+<a name="CBmpProc">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>CBmpProc</i></b></font>  --  <font face="宋体" size="+1" color="Black">类的构造函数</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	CBmpProc()	
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	---
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	---
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* 构造并初始化类的数据成员
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="GetObjectCount">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>GetObjectCount</i></b></font>  --  <font face="宋体" size="+1" color="Black">获取进程中CBmpProc类目标的个数</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	DWORD GetObjectCount()
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	---
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	DWORD			- 进程中CBmpProc类目标的个数
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* # 这是一个调试程序时使用的函数，它返回程序中CBmpProc类目标的总个数
+	* # 在程序中调用这个函数应在调用语句的上下加上#ifdef _DEBUG....#endif
+	*   语句，因为在编译程序的发布版时，该函数将从类中除去
+	* # 该函数是在线函数，定义在包含文件中
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="~CBmpProc">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>~CBmpProc</i></b></font>  --  <font face="宋体" size="+1" color="Black">析构函数</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	~CBmpProc()
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	---
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	---
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* 类的析构函数。如果此时类中还有图像，则该函数将清空它。（即释放类
+	  占用的所有内存资源）
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+<a name="operator=">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>operator=</i></b></font>  --  <font face="宋体" size="+1" color="Black">复制指定的位图</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	CBmpProc& operator=(const CBmpProc& ds)
+	CBmpProc& operator=(const HBITMAP sou)
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	const CBmpProc& ds		- 源位图类
+	const HBITMAP sou		- 源位图句柄
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	CBmpProc&			- 类自身引用
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* # 如果函数成功，则类中原来的位图（如果有的话）将被删除，如果不成功，它保留
+	  # 原位图。执行本函数之后，可调用该类的IsValid()函数判断是否成功复制（这种
+	  # 情况只使用于没有图像的类，如果复制前类中就存在图像，可用==操作符判断该类
+	  # 与源位图类是否相同，如果相同则表示复制成功，不同就说明失败）
+	* # 无论函数成功与否，源位图目标（句柄）不会受到任何影响
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="operator HBITMAP">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>operator HBITMAP</i></b></font>  --  <font face="宋体" size="+1" color="Black">强制转换类为一个位图句柄</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	operator HBITMAP() const
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	---
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	---
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* # 该函数只应用在强制转换中，不应用它来分离位图句柄。
+	* # 如果类中原来存在位图则返回它的句柄，否则返回NULL
+	* # 如果类中原来存在位图，执行本函数之后，位图仍存在
+	* # 该函数是在线函数，定义在包含文件中
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="operator==">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>operator==</i></b></font>  --  <font face="宋体" size="+1" color="Black">判断源位图类与本身类是否相同</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	BOOL operator==(const CBmpProc& ds)
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	const CBmpProc& ds		- 源位图类
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	BOOL				- 如果相同返回TRUE，不同返回FALSE
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* 该函数通过比较两个类的位图来判定它们是否具有相同的图像。
+	* 如果两个类都是空的（即都没有图像），则该函数将视它们是不相同的
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="operator!=">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>operator!=</i></b></font>  --  <font face="宋体" size="+1" color="Black">判断源位图类是否与本身类不同</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	BOOL operator!=(const CBmpProc& ds)
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	const CBmpProc& ds		- 源位图类
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	BOOL				- 如果不同返回TRUE，相同返回FALSE
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* 该函数通过比较两个类的位图来判定它们是否具有相同的图像。
+	* 如果两个类都是空的（即都没有图像），则该函数将视它们是不相同的
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="Draw">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>Draw</i></b></font>  --  <font face="宋体" size="+1" color="Black">将类中指定区域的图像绘入目标设备描述表的指定区域</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	BOOL CBmpProc::Draw(CDC& dc, const CRect* rcDst, const CRect* rcSrc)
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	CDC& dc			- 显示位图的设备描述表
+	const CRect* rcDst		- 目标矩形
+	const CRect* rcSrc		- 源矩形
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	BOOL				- 如果成功返回TRUE，否则返回FALSE
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* 如果源区域（即矩形）和目标区域不同，将产生拉伸或压缩动作
+	* 如果源矩形和目标矩形是NULL,则函数将视这两个矩形都等于类中图像的尺寸
+	* 如果类中没有图像，它什么也不做，直接返回
+	* 如果待绘制的图像不在当前剪贴区域内，则直接返回
+<hr width="100%" align="center">
+ </a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="DrawTile">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>DrawTile</i></b></font>  --  <font face="宋体" size="+1" color="Black">将类中的图像以平铺方式排满指定区域</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	BOOL DrawTile(CDC& dc, const CRect* crArea)
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	CDC& dc			- 显示位图的设备描述表
+	const CRect* crArea		- 铺设范围（矩形坐标）
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	BOOL				- 如果成功返回TRUE，否则返回FALSE
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* 如果入口参数crArea是NULL,则函数返回FALSE，如果矩形坐标不符合规范（比如
+	* 左边的坐标大于右边的坐标）则函数将自动将其规范化。如果矩形坐标的宽度
+	* 或高度是0，则函数将返回FALSE
+	* 如果类中没有图像，它什么也不作，直接返回
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+<a name="DrawCenter">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>DrawCenter</i></b></font>  --  <font face="宋体" size="+1" color="Black">将类中图像绘入目标设备描述表的指定区域（矩形）的中央，</font>
+<font face="宋体" size="+1" color="Black">		     即图像中点与矩形中点重合</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	BOOL DrawCenter(CDC& dc, const CRect* crArea)
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	CDC& dc			- 显示位图的设备描述表
+	const CRect* crArea		- 显示范围（矩形坐标）
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	BOOL				- 如果成功返回TRUE，否则返回FALSE
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* 如果矩形的尺寸小于图像尺寸，则图像的四周部分会不可见
+	* 如果入口参数crArea是NULL，函数将返回FALSE
+	* 如果类中没有图像，它什么也不作，直接返回
+	* 如果矩形坐标不符合规范（比如左边的坐标大于右边的坐标）则函数将自动将
+	* 其规范化。如果矩形坐标的宽度或高度是0，则函数将返回FALSE
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="Clear">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>Clear</i></b></font>  --  <font face="宋体" size="+1" color="Black">清除类中的图像</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	void Clear()
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	---
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	---
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* 这个函数将删除类中的位图句柄，并清除类中的描述变量
+	* 如果类中没有图像，它什么也不作，直接返回
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="Attach">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>Attach</i></b></font>  --  <font face="宋体" size="+1" color="Black">将指定的位图贴入本身类中</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	BOOL Attach(HBITMAP hBmp)
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	HBITMAP hBmp			- 待粘贴的位图句柄
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	BOOL				- 如果成功返回TRUE，否则返回FALSE
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* 如果hBmp是一个无效的句柄或是NULL，函数返回FALSE
+	* 如果本身类中原来存在图像，则调用函数成功之后，原来的图像将被删除
+	* hBmp必须是一个兼容于当前显示器颜色格式的DDB位图句柄
+	* 如果函数执行成功后，调用它的程序不应再使用hBmp句柄，因为它已被贴入类中
+	* 如果函数失败，调用它的程序仍可以正常使用hBmp句柄
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="Detach">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>Detach</i></b></font>  --  <font face="宋体" size="+1" color="Black">将本身类中的位图分离出来。</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	HBITMAP Detach()
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	---
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	HBITMAP			- 如果成功，返回分离出的位图句柄，否则返回NULL
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* 如果本身类中原来存在位图，函数成功调用之后，本身类将被清空
+	* 如果本身类中原来没有位图，函数返回NULL
+	* 它与Clear()函数不同的是它并不删除位图句柄，而是将其通过返回参数返回调用者
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="Save">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>Save</i></b></font>  --  <font face="宋体" size="+1" color="Black">将本身类中的位图以新的格式或新的名称保存到文件中</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	BOOL Save(LPCTSTR lpszNewFileName, WORD nBitsPerPixel)
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	LPCTSTR lpszNewFileName		- 指定的新文件名（可以是NULL）
+	WORD nBitsPerPixel		- 指定的新颜色格式（即每像素多少位，可以是0）
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	BOOL				- 如果成功返回TRUE，否则返回FALSE
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* # 如果没有指定新的文件名（入口参数lpszNewFileName被指定为NULL），函数
+	*   就使用类中原来的文件名，如果类中原来没有文件名则函数失败，返回FALSE
+	* # 如果没有指定新的位数（入口参数nBitsPerPixel被指定为0），函数就使用类
+	*   中原来的位数值。如果新指定的位数值非法则函数失败，返回FALSE。合法的
+	*   位数值是1,4,8,16,24,32 其中之一
+	* # 如果本身类中原来没有位图（空类），函数返回FALSE
+	* # 如果文件没有打开或是写文件时出错，函数返回FALSE
+	* # 函数执行成功之后，本身类中的文件名或位数将改为新值
+	* # 无论函数成功与否，本身类中的位图不会改变
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="SaveToClipboard">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>SaveToClipboard</i></b></font>  --  <font face="宋体" size="+1" color="Black">保存本身类中的位图到剪贴板</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	BOOL SaveToClipboard()
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	---
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	BOOL			- 如果成功返回TRUE，否则返回FALSE
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* # 如果本身类中原来没有位图，函数返回FALSE
+	* # 如果在打开或写入剪贴板时出错，函数返回FALSE
+	* # 无论函数成功与否，本身类中的内容都不会改变
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="Create">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>Create</i></b></font>  --  <font face="宋体" size="+1" color="Black">根据指定的数据创建一个位图，并贴入本身类中</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	BOOL Create(CSize size, WORD nBitCount, const void *lpBits)
+	BOOL Create(int width, int height, WORD nBitCount, const void *lpBits)
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	int width			- 创建位图的宽度
+	int height			- 创建位图的高度
+	CSize size			- 创建位图的宽度和高度（重载）
+	WORD nBitCount			- 创建位图中每个像素所占的位数
+	const void *lpBits		- 新位图的初始化位数据（可以是NULL）
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	BOOL				- 如果成功返回TRUE，否则返回FALSE
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* # 入口参数width和height不能是0，如果指定了0，函数返回FALSE
+	* # 入口参数nBitCount的有效值可以是1,4,8,16,24,32，其它的值将视为非法
+	* # 如果本身类中原来存在图像，则调用函数成功之后，原来的图像将被删除
+	* # 如果入口参数lpBits是NULL，则新创建的位图不会被初始化
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="CreateCompatible">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>CreateCompatible</i></b></font>  --  <font face="宋体" size="+1" color="Black">根据指定的数据创建一个颜色格式兼容于指定描述表的位图，</font>
+<font face="宋体" size="+1" color="Black">			    并贴入本身类中</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	BOOL CreateCompatible(int width, int height, CDC *pDC, const void *lpBits)
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	int width			- 创建位图的宽度
+	int height			- 创建位图的高度
+	CDC *pDC, 			- 设备描述表（可以是NULL）
+	const void *lpBits		- 新位图的初始化位数据（可以是NULL）
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	BOOL				- 如果成功返回TRUE，否则返回FALSE
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* # 入口参数width和height不能是0，如果指定了0，函数返回FALSE
+	* # 入口参数pDC可以是NULL，这时函数将按当前显示器的颜色格式创建位图，如果
+	*   pDC不是NULL，则它必须指向一个有效的设备描述表
+	* # 如果本身类中原来存在图像，则调用函数成功之后，原来的图像将被删除
+	* # 如果入口参数lpBits是NULL，则新创建的位图不会被初始化
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="CopyFromObject">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>CopyFromObject</i></b></font>  --  <font face="宋体" size="+1" color="Black">复制源位图中指定矩形的图像到本身类中指定矩形</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	BOOL CopyFromObject(CBmpProc& souBmp, CRect *pDesRect, CRect *pSouRect)
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	CBmpProc& souBmp		- 源位图目标
+	CRect *pDesRect		- 目标矩形
+	CRect *pSouRect		- 源矩形
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	BOOL				- 如果成功返回TRUE，否则返回FALSE
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* # 如果入口参数pDesRect设为NULL,则目标矩形等于源图像的尺寸
+	* # 如果入口参数pSouRect设为NULL,则源目标矩形等于源图像的尺寸
+	* # 如果入口参数pDesRect和pSouRect不同，该函数可能会产生拉伸或压缩动作
+	* # 本身类中原来必需已存在位图，且调用之后的位图不会被删除
+	* # 如果源位图类是空的，则返回FALSE
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="CopyFromHbmp">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>CopyFromHbmp</i></b></font>  --  <font face="宋体" size="+1" color="Black">复制源位图中指定矩形的图像到本身类中指定矩形</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	BOOL CopyFromHbmp(HBITMAP souBmp, CRect *pDesRect, CRect *pSouRect)
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	HBITMAP souBmp		- 源位图句柄
+	CRect *pDesRect		- 目标矩形
+	CRect *pSouRect		- 源矩形
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	BOOL				- 如果成功返回TRUE，否则返回FALSE
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* # 如果入口参数pDesRect设为NULL,则目标矩形等于源图像的尺寸
+	* # 如果入口参数pSouRect设为NULL,则源目标矩形等于源图像的尺寸
+	* # 如果入口参数pDesRect和pSouRect不同，该函数可能会产生拉伸或压缩动作
+	* # 本身类中原来必需已存在位图，且调用之后的位图不会被删除
+	* # 如果源位图句柄是无效的，则函数返回FALSE
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="CopyTran">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>CopyTran</i></b></font>  --  <font face="宋体" size="+1" color="Black">透明的复制源位图中指定矩形的图像到本身类中指定矩形</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	BOOL CopyTran(CBmpProc& souBmp, COLORREF crColour, int x, int y, 
+			CRect *pSouRect, int mode)
+	BOOL CopyTran(CBmpProc& souBmp, COLORREF crColour, CRect *pDesRect, 
+			CRect *pSouRect, int mode)
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	CBmpProc& souBmp		- 源位图目标
+	COLORREF crColour		- 要滤掉或保留的颜色（缺省值是白色）
+	int x				- 目标矩形左上角X坐标（缺省值为0）
+	int y				- 目标矩形左上角Y坐标（缺省值为0）
+	CRect *pDesRect		- 目标矩形坐标数据（缺省值为NULL）
+	CRect *pSouRect		- 源矩形（缺省值为NULL）
+	int mode			- 如果是0则将不拷贝指定的颜色，如果是1则保留指定
+					  的颜色（缺省值为0）
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	BOOL				- 如果成功返回TRUE，否则返回FALSE
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* # 如果入口参数pSouRect设为NULL,则源目标矩形等于源图像的尺寸。这样该
+	  # 函数将不产生拉伸或压缩动作。（只在第一个原形中有效）
+	* # 如果入口参数pDesRect设为NULL,则目标矩形等于源图像的尺寸。
+	* # 本身类中原来必需已存在位图，且调用之后的位图不会被删除
+	* # 如果源位图类是空的，则返回FALSE
+	* # 如果本身类中不存在位图，函数将返回FALSE
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="CopyTranCenter">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>CopyTranCenter</i></b></font>  --  <font face="宋体" size="+1" color="Black">将源位图透明的复制到本类中指定矩形的中央</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	BOOL CopyTranCenter(CBmpProc& souBmp, CRect* crArea, COLORREF crColour, 
+				int mode)
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	CBmpProc& souBmp		- 源位图目标
+	CRect* crArea 		- 居中的范围（缺省值为NULL）
+	COLORREF crColour		- 要滤掉或保留的颜色（缺省值是白色）
+	int mode			- 如果是0则将不拷贝指定的颜色，如果是1则保留指定
+					  的颜色（缺省值为0）
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	BOOL				- 如果成功返回TRUE，否则返回FALSE
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* # 如果入口参数crArea设为NULL,则居中矩形等于本身类中图像的尺寸。
+	* # 该函数不会产生拉伸或压缩动作。
+	* # 本身类中原来必需已存在位图，且调用之后的位图不会被删除
+	* # 如果源位图类是空的，则返回FALSE
+	* # 如果本身类中不存在位图，函数将返回FALSE
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="CopyTranTile">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>CopyTranTile</i></b></font>  --  <font face="宋体" size="+1" color="Black">将源位图透明的平铺到本类的指定矩形中</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	BOOL CopyTranTile(CBmpProc& souBmp, CRect* crArea, COLORREF crColour, 
+				int mode)
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	CBmpProc& souBmp		- 源位图目标
+	CRect* crArea 		- 平铺的范围（缺省值为NULL）
+	COLORREF crColour		- 要滤掉或保留的颜色（缺省值是白色）
+	int mode			- 如果是0则将不拷贝指定的颜色，如果是1则保留指定
+					  的颜色（缺省值为0）
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	BOOL				- 如果成功返回TRUE，否则返回FALSE
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* # 如果入口参数crArea设为NULL,则平铺矩形等于本身类中图像的尺寸。
+	* # 该函数不会产生拉伸或压缩动作。
+	* # 本身类中原来必需已存在位图，且调用之后的位图不会被删除
+	* # 如果源位图类是空的，则返回FALSE
+	* # 如果本身类中不存在位图，函数将返回FALSE
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="LoadFromClipboard">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>LoadFromClipboard</i></b></font>  --  <font face="宋体" size="+1" color="Black">读取剪贴板中的DIB位图到类中</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	BOOL LoadFromClipboard()
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	---
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	BOOL			- 如果成功返回TRUE，否则返回FALSE
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* # 如果函数成功，则类中原来的位图（如果有的话）将被删除
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="LoadFromHbmp">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>LoadFromHbmp</i></b></font>  --  <font face="宋体" size="+1" color="Black">读取源位图中指定矩形的图像到类中</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	BOOL LoadFromHbmp(HBITMAP sou, CRect *pSouRect)
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	HBITMAP sou			- 源位图句柄
+	CRect *pSouRect			- 复制矩形
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	BOOL				- 如果成功返回TRUE，否则返回FALSE
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* # 如果函数成功，则类中原来的位图（如果有的话）将被删除
+	* # 如果入口参数pSouRect设为NULL,则复制源目标的整个位图
+	* # 如果入口参数pSouRect不是NULL，那么它必须是一个正常的矩形坐标数
+	*   据（即左上角坐标小于右下角坐标）
+	* # 如果sou是无效位图，则函数将返回FALSE
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="LoadFromObject">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>LoadFromObject</i></b></font>  --  <font face="宋体" size="+1" color="Black">读取源位图中指定矩形的图像到类中</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	BOOL LoadFromObject(CBmpProc& souBmp, CRect *pSouRect)
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	CBmpProc& souBmp		- 源位图目标
+	CRect *pSouRect			- 复制矩形
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	BOOL				- 如果成功返回TRUE，否则返回FALSE
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* # 如果函数成功，则类中原来的位图（如果有的话）将被删除
+	* # 如果入口参数pSouRect设为NULL,则复制源目标的整个位图
+	* # 如果入口参数pSouRect不是NULL，那么它必须是一个正常的矩形坐标数
+	*   据（即左上角坐标小于右下角坐标）
+	* # 如果souBmp中没有位图，则函数将返回FALSE
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="LoadFromResourceName">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>LoadFromResourceName</i></b></font>  --  <font face="宋体" size="+1" color="Black">读取指定位图资源到类中</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	BOOL LoadFromResourceName(LPCTSTR lpResourceName, HINSTANCE hInstance)
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	LPCTSTR lpResourceName		- 待读入的位图资源名称（字符串）
+	HINSTANCE hInstance		- 位图资源所在实例的句柄（如果它被设为NULL，则
+					  函数将该值设为当前应用程序进程）
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	BOOL				- 如果成功返回TRUE，否则返回FALSE
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* # 如果函数成功，则类中原来的位图（如果有的话）将被删除
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="LoadFromResourceID">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>LoadFromResourceID</i></b></font>  --  <font face="宋体" size="+1" color="Black">读取指定位图资源到类中</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	BOOL LoadFromResourceID(UINT uID, HINSTANCE hInst) 
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	UINT uID			- 待读入的位图资源标识值
+	HINSTANCE hInstance		- 位图资源所在实例的句柄（如果它被设为NULL，则
+					  函数将该值设为当前应用程序进程）
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	BOOL				- 如果成功返回TRUE，否则返回FALSE
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* # 如果函数成功，则类中原来的位图（如果有的话）将被删除
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="LoadFromFile">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>LoadFromFile</i></b></font>  --  <font face="宋体" size="+1" color="Black">从文件中读取位图</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	BOOL LoadFromFile(LPCTSTR lpszPathName)
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	LPCTSTR lpszPathName		- 待读入的位图文件名称（路径）
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	BOOL				- 如果成功返回TRUE，否则返回FALSE
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* # 如果函数成功，则类中原来的位图（如果有的话）将被删除
+	* # 如果入口参数指定的文件不存在或不是一个位图文件，则函数返回FALSE
+	* # 如果在读入文件的过程中如果出现错误，则函数返回FALSE
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="Size">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>Size</i></b></font>  --  <font face="宋体" size="+1" color="Black">获取类中图像的宽度和高度（以像素为单位）</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	CSize Size() const
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	---
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	CSize			- 返回包含图像尺寸的CSize目标，如果失败，CSize目标
+				  中的宽度和高度都是0
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	---
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="Rect">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>Rect</i></b></font>  --  <font face="宋体" size="+1" color="Black">获取类中图像的尺寸数据（以像素为单位）</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	CRect Rect() const
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	---
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	CRect			- 返回包含图像尺寸的CRect目标，如果失败，CRect目标
+				  中的数据均是0
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	---
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="Width">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>Width</i></b></font>  --  <font face="宋体" size="+1" color="Black">获取类中图像的宽度数据（以像素为单位）</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	int Width() const
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	---
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	int			- 返回图像的宽度，如果失败返回0
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	---
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="Height">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>Height</i></b></font>  --  <font face="宋体" size="+1" color="Black">获取类中图像的高度数据（以像素为单位）</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	int Height() const
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	---
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	int			- 返回图像的高度，如果失败返回0
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	---
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="ScanWidth">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>ScanWidth</i></b></font>  --  <font face="宋体" size="+1" color="Black">获取类中图像的扫描行宽度（以字节为单位）</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	int ScanWidth() const
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	---
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	int			- 返回图像每一扫描行的宽度，如果失败返回0
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* # DIB位图扫描行是DWORD型对齐的，DDB位图扫描行是WORD对齐的
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="BitsPerPixel">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>BitsPerPixel</i></b></font>  --  <font face="宋体" size="+1" color="Black">获取类中图像每个像素所占的位的个数</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	int BitsPerPixel() const
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	---
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	int			- 返回图像中每个像素所占的位数，如果失败返回0
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* # 比如16色位图每个像素占4位
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="IsValid">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>IsValid</i></b></font>  --  <font face="宋体" size="+1" color="Black">判断类中是否存在有效的位图</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	BOOL  IsValid() const
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	---
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	BOOL			- 如果类中存在位图则返回TRUE，否则返回FALSE
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	---
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="GetImageType">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>GetImageType</i></b></font>  --  <font face="宋体" size="+1" color="Black">获取类中位图的来源类型编码</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	int GetImageType() const
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	---
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	int			- 图像的类型编码
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* # 返回的数值可用CBmpProc::IT_MEMORY等类似的方法来判别，它可能是下列值之一：
+	*
+	* 		CBmpProc::IT_NULL,		— 无位图类型	0   （类中没有位图）
+	*		CBmpProc::IT_DISKFILE,	— 文件位图	1
+	*		CBmpProc::IT_RESOURCE,	— 资源位图	2
+	*		CBmpProc::IT_MEMORY,		— 内存位图	3
+	*		CBmpProc::IT_CLIP,		— 剪贴板位图	4
+	*		CBmpProc::IT_CREATE		— 创建型位图	5
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="GetInAddInfo">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>GetInAddInfo</i></b></font>  --  <font face="宋体" size="+1" color="Black">获取类中位图的附加信息</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	DWORD GetInAddInfo() const
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	---
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	DWORD			- 附加信息内容
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* # 附加信息的内容会随位图来源类型的不同而不同，当位图来源编码等于
+	*   CBmpProc::IT_RESOURCE，并且使用的是标识，则附加信息就等于这个
+	*   标识的值，其它情况下它是0（没有意义）
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="GetFileName">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>GetFileName</i></b></font>  --  <font face="宋体" size="+1" color="Black">获取类中位图的文件名称</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	const CString& GetFileName() const
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	---
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	const CString&		- 文件名存放类的引用
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* # 不要用本函数的返回值来改变文件名称！（但可使用SetFileName()函数）
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="SetFileName">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>SetFileName</i></b></font>  --  <font face="宋体" size="+1" color="Black">重新设置位图的文件名称</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	BOOL SetFileName(LPSTR pSou)
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	LPSTR pSou		- 新的文件名称
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	BOOL			- 如果设置成功返回TRUE，否则返回FALSE
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* # 如果原来类中没有位图，函数执行失败
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="GetObject">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>GetObject</i></b></font>  --  <font face="宋体" size="+1" color="Black">获取位图的BITMAP信息</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	int GetObject(LPBITMAP lpBitmap) const
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	LPBITMAP lpBitmap		- 接收信息数据的结构变量地址
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	int				- 如果成功返回以获取的字节个数，如果失败，返回0
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* # 函数成功返回之后，BITMAP结构中只有width,height及颜色格式信息有效
+	* # 如果类中原来没有位图，函数失败，返回0
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="GetVersion">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>GetVersion</i></b></font>  --  <font face="宋体" size="+1" color="Black">获取CBmpProc类的版本号</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	WORD GetVersion() const
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	---
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	WORD				- 版本号
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* # 返回值中的高8位是主版本号，低8位是子版本号
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="GetHDib">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>GetHDib</i></b></font>  --  <font face="宋体" size="+1" color="Black">获取本身类位图的DIB内部形式的内存块句柄</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	HANDLE GetHDib() const
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	---
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	HANDLE			- 如果成功返回DIB内部形式的内存块句柄
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* # 如果本身类中原来没有位图，函数返回NULL
+	* # 返回的内存句柄是用GlobalAlloc()函数分配的，如果不再使用时应及时释放
+	* # 返回的句柄可以贴入剪贴板，或与其它的DIB类通信
+	* # DIB内部形式：BITMAPINFOHEADER+COLORTABLE+BITsDATA
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="DrawTransparentInPoint">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>DrawTransparentInPoint</i></b></font>  --  <font face="宋体" size="+1" color="Black">将类中的图像透明的绘入目标设备描述表指定位置</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	BOOL DrawTransparentInPoint(CDC& dc, COLORREF crColour, int x, int y, 
+			CRect* crSou, int mode);
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	CDC& dc			- 显示位图的设备描述表
+	COLORREF crColour		- 图像中要被滤掉或保留的颜色（缺省值为白色）
+	x, y				- 目标矩形左上角坐标数据（缺省值是0）
+	CRect* crSou			- 源图像待显示部分的矩形坐标（缺省值是NULL）
+	int mode			- 如果是0则将不显示指定的颜色，如果是1则保留指定
+					  的颜色（缺省值为0）
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	BOOL				- 如果成功返回TRUE，否则返回FALSE
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* # 如果入口参数crSou被设为NULL，则函数将不会产生图像的拉伸或压缩
+	* # 如果类中没有图像，它什么也不作，直接返回
+	* # 如果待绘制的图像不在当前剪贴区域内，则直接返回
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="DrawTransparentInRect">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>DrawTransparentInRect</i></b></font>  --  <font face="宋体" size="+1" color="Black">将类中的图像透明的绘入目标设备描述表指定矩形</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	BOOL DrawTransparentInRect(CDC& dc, COLORREF crColour, CRect* crDest, 
+			CRect* crSou, int mode);
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	CDC& dc			- 显示位图的设备描述表
+	COLORREF crColour		- 图像中要被滤掉或保留的颜色（缺省值为白色）
+	CRect* crDest			- 目标矩形坐标数据（缺省值是NULL）
+	CRect* crSou			- 源图像待显示部分的矩形坐标（缺省值是NULL）
+	int mode			- 如果是0则将不显示指定的颜色，如果是1则保留指定
+					  的颜色（缺省值为0）
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	BOOL				- 如果成功返回TRUE，否则返回FALSE
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* # 如有必要可以产生拉伸或压缩动作
+	* # 如果类中没有图像，它什么也不作，直接返回
+	* # 如果待绘制的图像不在当前剪贴区域内，则直接返回
+	* # 如果入口参数crDest和crSou都是NULL，则函数将在设备描述表的0,0位置不变形的
+	  # 绘制类中位图的整个内容
+	* # 如果入口参数crDest和crSou的宽度或高度值不同，则绘制出来的图像会变形（被
+	  # 拉伸或被压缩）
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="DrawTranCenter">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>DrawTranCenter</i></b></font>  --  <font face="宋体" size="+1" color="Black">将类中图像透明的绘入目标设备描述表的指定矩形的中央</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	BOOL DrawTranCenter(CDC& dc, CRect* crArea, COLORREF crColour, int mode)
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	CDC& dc			- 显示位图的设备描述表
+	CRect* crArea			- 显示居中的范围（矩形坐标）
+	COLORREF crColour		- 图像中要被滤掉或保留的颜色（缺省值为白色）
+	int mode			- 如果是0则将不显示指定的颜色，如果是1则保留指定
+					  的颜色（缺省值为0）
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	BOOL				- 如果成功返回TRUE，否则返回FALSE
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* # 如果矩形的尺寸小于图像尺寸，则超出矩形的图像部分会不可见
+	* # 如果入口参数crArea是NULL，函数将返回FALSE
+	* # 如果类中没有图像，它什么也不作，直接返回
+	* # 如果矩形坐标不符合规范（比如左边的坐标大于右边的坐标）则函数将自动将
+	  # 其规范化。如果矩形坐标的宽度或高度是0，则函数将返回FALSE
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="DrawTranTile">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>DrawTranTile</i></b></font>  --  <font face="宋体" size="+1" color="Black">将类中的图像以平铺并且是透明的方式排满指定区域</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	BOOL DrawTranTile(CDC& dc, CRect* crArea, COLORREF crColour, int mode)
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	CDC& dc			- 显示位图的设备描述表
+	CRect* crArea			- 平铺范围（矩形坐标）
+	COLORREF crColour		- 图像中要被滤掉或保留的颜色（缺省值为白色）
+	int mode			- 如果是0则将不显示指定的颜色，如果是1则保留指定
+					  的颜色（缺省值为0）
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	BOOL				- 如果成功返回TRUE，否则返回FALSE
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* # 如果入口参数crArea是NULL,则函数返回FALSE，如果矩形坐标不符合规范（比如
+	  # 左边的坐标大于右边的坐标）则函数将自动将其规范化。如果矩形坐标的宽度
+	  # 或高度是0，则函数将返回FALSE
+	* # 如果类中没有图像，它什么也不作，直接返回
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="ExportRegion">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>ExportRegion</i></b></font>  --  <font face="宋体" size="+1" color="Black">输出类中位图的区域句柄</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	HRGN ExportRegion(COLORREF cTranColor)
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	COLORREF cTranColor	- 指定要滤掉的颜色（缺省值是白色）
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	HRGN 			- 如果成功返回位图的区域句柄，否则返回NULL
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* # 该函数就是将指定的颜色不划入区域之内，而由其它颜色的坐标组成一个区域
+	* # 如果类中没有图像，它什么也不作，直接返回NULL
+	* # 当长时间不需要这个返回的区域句柄时，应调用DeleteObject()函数将其释放
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="Fill">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>Fill</i></b></font>  --  <font face="宋体" size="+1" color="Black">用指定的颜色填充本身类中位图的指定矩形</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	BOOL Fill(COLORREF crColour, CRect *crArea)
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	COLORREF crColour		- 指定要填充的颜色（缺省值是白色）
+	CRect *crArea			- 填充的矩形（缺省值是NULL）
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	BOOL 				- 如果成功返回TRUE，否则返回FALSE
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* # 如果入口参数crArea被设为NULL，则函数将填充整个的位图
+	* # 如果类中没有图像，直接返回FALSE
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="ReSetColor">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>ReSetColor</i></b></font>  --  <font face="宋体" size="+1" color="Black">用一种颜色替换另一种颜色，在位图的指定矩形中</font>
+<hr width="100%" align="center" noshade>
+<font face="宋体" size="+1" color="Black"><b>原型：</b></font>
+	BOOL ReSetColor(COLORREF oldcolr, COLORREF newcolr, CRect *crArea)
+<font face="宋体" size="+1" color="Black"><b>参数说明：</b></font>
+	COLORREF oldcolr		- 待替换的旧颜色
+	COLORREF newcolr		- 将要替换上去的新的颜色
+	CRect *crArea			- 要替换的范围（缺省值是NULL）
+<font face="宋体" size="+1" color="Black"><b>返回值：</b></font>
+	BOOL 				- 如果成功返回TRUE，否则返回FALSE
+<font face="宋体" size="+1" color="Black"><b>描述：</b></font>
+	* # 如果入口参数crArea被设为NULL，则函数将替换整个的位图指定颜色
+	* # 如果类中没有图像，直接返回FALSE
+<hr width="100%" align="center">
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a name="Class">
+<font face="Arial" size="-1" color="Silver"><i>SXZ software workgroup.</i></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+<font face="Arial" size="+2" color="Black"><b><i>Class Define</i></b></font>
+<hr width="100%" align="center" noshade>
+class CBmpProc : public CBitmap
+{
+public:
+	CBmpProc();
+	~CBmpProc();
+
+	BOOL Create(int width, int height, WORD nBitCount, const void *lpBits=NULL);
+	BOOL Create(CSize size, WORD nBitCount, const void *lpBits=NULL);
+	BOOL CreateCompatible(int width, int height, CDC *pDC=NULL, const void *lpBits=NULL);
+
+	BOOL CopyFromObject(CBmpProc& souBmp, CRect *pDesRect=NULL, CRect *pSouRect=NULL);
+	BOOL CopyFromHbmp(HBITMAP souBmp, CRect *pDesRect=NULL, CRect *pSouRect=NULL);
+	BOOL CopyTran(CBmpProc& souBmp, COLORREF crColour=CBPCOLOR_WHITE, 
+			CRect *pDesRect=NULL, CRect *pSouRect=NULL, int mode=0);
+	BOOL CopyTran(CBmpProc& souBmp, COLORREF crColour=CBPCOLOR_WHITE, 
+			int x=0, int y=0, CRect *pSouRect=NULL, int mode=0);
+	BOOL CopyTranCenter(CBmpProc& souBmp, CRect* crArea=NULL, 
+			COLORREF crColour=CBPCOLOR_WHITE, int mode=0);
+	BOOL CopyTranTile(CBmpProc& souBmp, CRect* crArea=NULL, 
+			COLORREF crColour=CBPCOLOR_WHITE, int mode=0);
+
+	BOOL LoadFromFile(LPCTSTR lpszPathName);
+	BOOL LoadFromResourceID(UINT uID, HINSTANCE hInst);
+	BOOL LoadFromResourceName(LPCTSTR lpResourceName, HINSTANCE hInst);
+	BOOL LoadFromObject(CBmpProc& souBmp, CRect *pSouRect=NULL);
+	BOOL LoadFromHbmp(HBITMAP sou, CRect *pSouRect=NULL);
+	BOOL LoadFromClipboard();
+
+	BOOL Save(LPCTSTR lpszNewFileName=NULL, WORD nBitsPerPixel=0);
+	BOOL SaveToClipboard();
+
+	BOOL Draw(CDC& dc, const CRect* rcDst=NULL, const CRect* rcSrc=NULL);
+	BOOL DrawTile(CDC& dc, CRect* crArea);
+	BOOL DrawCenter(CDC& dc, CRect* crArea);
+	BOOL DrawTransparentInRect(CDC& dc, COLORREF crColour=CBPCOLOR_WHITE, 
+			CRect* crDest=NULL, CRect* crSou=NULL, int mode=0);
+	BOOL DrawTransparentInPoint(CDC& dc, COLORREF crColour=CBPCOLOR_WHITE, 
+			int x=0, int y=0, CRect* crSou=NULL, int mode=0);
+	BOOL DrawTranCenter(CDC& dc, CRect* crArea, COLORREF crColour=CBPCOLOR_WHITE, int mode=0);
+	BOOL DrawTranTile(CDC& dc, CRect* crArea, COLORREF crColour=CBPCOLOR_WHITE, int mode=0);
+
+	BOOL Attach(HBITMAP hBmp);
+	HBITMAP Detach();
+	void Clear();
+	HRGN ExportRegion(COLORREF cTranColor=CBPCOLOR_WHITE);
+	BOOL Fill(COLORREF crColour=CBPCOLOR_WHITE, CRect *crArea=NULL);
+	BOOL ReSetColor(COLORREF oldcolr, COLORREF newcolr, CRect *crArea=NULL);
+		   
+	// 重载操作符函数
+	CBmpProc& operator=(const CBmpProc& ds);
+	CBmpProc& operator=(const HBITMAP sou);
+	BOOL operator==(const CBmpProc& ds);
+	BOOL operator!=(const CBmpProc& ds);
+	operator HBITMAP() const { return (HBITMAP)m_hObject; };
+
+
+	// 类数据访问函数
+	CSize Size() const;
+	CRect Rect() const;
+	int   Width() const;
+	int   Height() const;
+	int   ScanWidth() const;
+	int   BitsPerPixel() const;
+
+	BOOL  IsValid() const;
+
+	//访问类内部数据的介面函数
+	int   GetImageType() const;
+	DWORD GetInAddInfo() const;
+	const CString& GetFileName() const;
+	BOOL  SetFileName(LPSTR pSou);
+	int   GetObject(LPBITMAP lpBitmap) const;
+
+	HANDLE GetHDib() const;
+	WORD GetVersion() const;
+
+#ifdef _DEBUG
+	static DWORD GetObjectCount() {return m_ObjectCount;};
+#endif
+
+protected:
+	// 助手函数（与类无关）
+	LPSTR FindDIBBits(LPSTR lpbi) const;
+	DWORD DIBWidth(LPBITMAPINFOHEADER lpbi) const;
+	DWORD DIBHeight(LPBITMAPINFOHEADER lpbi) const;
+	WORD PaletteSize(LPBITMAPINFOHEADER lpbi) const;
+	WORD DIBNumColors(LPBITMAPINFOHEADER lpbi) const;
+	int	GetBitsPerPixel(LPBITMAPINFOHEADER lpbi) const;
+
+	LPVOID CreateMemoryBlockFromHandle(HANDLE handle, DWORD dwCount=0);
+	LPVOID CreateMemoryBlockFromAddress(LPVOID pSou, DWORD dwCount=0);
+
+	BOOL IsValidBmpFile(CFile& file);
+	LPBITMAPINFO GetBmpFileInfo(CFile& file);
+	LPSTR GetBmpFileBits(CFile& file);
+	BOOL IsValidDibFormat(WORD nBitsPerPixel);
+	BOOL IsFileExist(LPCTSTR lpFileName);
+
+	DWORD CalculateDIBFileSize(LPBITMAPINFOHEADER lpbi) const;
+	DWORD CalculateDIBSize(LPBITMAPINFOHEADER lpbi) const;
+	DWORD CalculateDIBitsOff(LPBITMAPINFOHEADER lpbi) const;
+	DWORD CalculateDIBInfoSize(LPBITMAPINFOHEADER lpbi) const;
+	DWORD CalculateDIBitsSize(LPBITMAPINFOHEADER lpbi) const;
+	
+	BOOL PasteAvailable();
+
+
+	// 内部服务函数（与类有关）
+	BOOL SaveBaseSpecifyFileName(LPCTSTR fn);
+	BOOL SaveBaseSpecifyFormat(WORD nBitsPerPixel);
+	LPBITMAPINFO GetSpecifyFormatInfo(WORD newBitCount=0);
+	BOOL ClearAndSetData(int type, DWORD addinfo, LPCTSTR lpFn, LPBITMAPINFO pInfo, HBITMAP hBmp);
+
+public:
+	enum			// 位图的初始来源类型：
+	{
+		IT_NULL,	// 无位图类型
+		IT_DISKFILE,	// 文件位图
+		IT_RESOURCE,	// 资源位图
+		IT_MEMORY,	// 内存位图
+		IT_CLIP,	// 剪贴板位图
+		IT_CREATE	// 创建型位图
+	};
+
+private:
+	// 数据成员
+	BOOL m_mark;		// 类的有效标志。（TRUE-本类中有位图，
+				// FALSE-本类中没有位图）
+	int  m_type;		// 图像类型，只能使用上面枚举类型值
+	DWORD   m_addInfo;	// 附加信息。
+	CString	m_cFileName;// 文件路径。
+	LPBITMAPINFO  m_pInfo;	// DIB 信息结构
+
+#ifdef _DEBUG
+	static DWORD m_ObjectCount;	// 本类构造的实例目标个数，供调试使用
+#endif
+};
+<hr width="100%" align="center">
+</a>
+<font face="Arial" size="+2" color="block"><b><i>The End</i></b></font>
+<img border="0" src="image03.jpg" align="right" vspace="1" hspace="1" usemap="#Draw">
+</font>
+
+</pre>
+</BODY>
+</HTML>
