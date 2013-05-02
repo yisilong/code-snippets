@@ -1,21 +1,21 @@
 <?php
 $HTTP_RAW_POST_DATA = file_get_contents("php://input");
-$xml = simplexml_load_string($HTTP_RAW_POST_DATA);//×ª»»postÊý¾ÝÎªsimplexml¶ÔÏó
-//ÑéÖ¤token
+$xml = simplexml_load_string($HTTP_RAW_POST_DATA);//è½¬æ¢postæ•°æ®ä¸ºsimplexmlå¯¹è±¡
+//éªŒè¯token
 //if($xml->token) {};
 $baseurl = 'http://localhost/';
 $token = $xml->token;
 $urls = $xml->urls;
 $strSrcUrls = array();
 //$strShortUrls = array();
-// µÃµ½ËùÓÐµÄurls
+// å¾—åˆ°æ‰€æœ‰çš„urls
 foreach ($urls->url as $url){
 	$strSrcUrls[$url] = $url;
 }
-// ×éºÏ²éÑ¯Óï¾ä
+// ç»„åˆæŸ¥è¯¢è¯­å¥
 $strsql = "select srcurl,shorturl from shorturl where srcurl='";
 $strsql .= join("' or srcurl='",$strSrcUrls)."';";
-// ²éÑ¯Êý¾Ý¿â
+// æŸ¥è¯¢æ•°æ®åº“
 $db = new SQLite3('shorturl.db');
 $result = $db->query($strsql);
 while ($row = $results->fetchArray())){
